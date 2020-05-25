@@ -1,0 +1,31 @@
+{
+  "name": "bot-discord",
+  "version": "1.0.0",
+  "description": "bot para o discord.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/udarkness/discord-obote.git"
+  },
+  "author": "Namaca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/udarkness/discord-obote/issues"
+  },
+  "homepage": "https://github.com/udarkness/discord-obote#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.3.2",
+    "discord.js": "^12.2.0",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "moment": "^2.26.0",
+    "moment-duration-format": "^2.3.2",
+    "pretty-ms": "^7.0.0",
+    "random-puppy": "^1.1.0",
+    "yt-search": "^1.1.2",
+    "ytdl-core": "^2.1.4"
+  }
+}
