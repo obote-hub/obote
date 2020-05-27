@@ -1,17 +1,76 @@
-
-const ops = new Map();
-
+//Npm & packages
+const firebase = require('firebase/@app')
+const FieldValue = require('firebase-admin').firestore.FieldValue;
+const admin = require('firebase-admin')
+const fs = require('fs');
 const Discord = require('discord.js');
+const ytdl = require("ytdl-core");
+const path = require('path');
+//Main Client
 const client = new Discord.Client();
+//Database
+const ops = new Map();
 const queue = new Map();
 client.afk = new Map();
-client.work = new Map()
-const ytdl = require("ytdl-core");
-let prefix = '+'
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!, com ${client.guilds.cache.size} servers`);
-});
+client.work = new Map();
+client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
+const afk = client.afk;
+//Prefix
+let prefix = '+';
+//Other Things
+const directoryPath = path.join(__dirname, 'commands');
+//Firebase
+admin.initializeApp({
+  credential: admin.credential.cert({
+  "type": "service_account",
+  "project_id": "obote-dd403",
+  "private_key_id": "96f88b6e39df8d9dd89beb58cb659dde8ad8819f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCwlZWSENlNGlGm\nPrNX98amUNdXPVk/HYka4YCXOGCkVjhxXTuAL460F7+WOgHd1NQAlB/EKSIePBRW\nZiNdm2HxAO9SL9wl6lH9Bzc4f5gSBPKfQ4+eW3lXpFwNiuYt0ixnyhjYUt+Abh8i\n0zq239Ux5iKX/2YUwYbxf4RMIj2VAImcus1C4G8T1wwR5HQrVwurUnQa1RgK6fK3\nP2Ejx6UsWRAb1w2m5WTjuczwq/PlSOcdmh7/tPl47pXcSatRunI5OzBYB4qT9vch\nfJPKAZGN3RTltzou1Paf1OwunauWA+/g+TMoLYjYn0R73uIQoHHy4KELudVN6rvm\nV2KrjuexAgMBAAECggEAA01862s0wUArhEY6cPwBo2UyLd/IHknVYWMT1mA30IML\nUbV6ciqRivVBwFPL6qP7JhqfIHpbeMDLaZVF9o98LLeFgl5CShRAndCne/9I7xdY\nGVn4YvAXjCfXD+rH5NYAPh21yr/8DakhnHNibv6vPFxvS7P7awp2lWg653ihebqt\noIS8erFcwekgaMhx0Zms/tZ7Ebxmrvn1x6UYoIDHc8W3a4nf25d+sAgyEVl+b1ZO\n7du6LeBFIpUrkOhUJ0oI7RBT1l7kIjPUo6MgPYHM59G0CwD2InLlcgLsL7aNyxMW\neS+30vYmbOBzRRB5rBvlIXUtqY8efQggKMdwJblGcQKBgQDhvhE2tHnJk7rPt0Mq\nnJ06xP8cvy0ugZQQJwRRt8BBE1Hncz5qvGD3bRda1nPkAPt/nobfwBmfjGsYQeET\nMJACGdVvvd4TF2gA2jrlTaCLnFWEua1dKFITfGkdQXhEymN4A+vaoPeRis7mZLR6\nOdUV46YLmuwHYF69hpREdrTPWQKBgQDIQL80aSdtUIQtVei+3t+z3dHfYTJYdloq\nSDPnCmkJ3PKmsxTswJGhnlc8/hA3ZmscK6iRdlYqs7HFvsVPyj5+uL8BQKxqd0rb\ncpcTSAA9G4nI77tOZgCV/KeNAVrDB2Idr8u2Q9yMhd1JJmmww04M/NZqDef0Awjm\nOCoY5i7oGQKBgQDdFB6Zm8BWKQbgXJM8DStynfFWfuhJzn9qHjv9p95yHPCuok+z\nio/QYZdoz/OpjUjBIEjooqK1fXh4xjQebgXq+M/t4l22BstFYnQhk5eygsXB+XIO\ndOmEyefLzg1yGV+27ugyMkii0fV075VMyoykJlG8tdmIE9pU9JMKRdMn6QKBgQC8\nKkLAL7Kxf//DTb82YtwW+e70FDOndgZBRrkmdty+PNPxGcMmt8ff8pYMpLp+JAmv\nXcK2dFiBJXp80kY7NFHG5zfrKGcaX1+Clskof/ZhdRfiLIl3IFeal96km0o6ihyC\nwqYLbPa3QC3vR132j34urAGZg9mZqqRZFxtPbDNVOQKBgQCBU1R40PGaqGKNy0hI\nbIPtMYgRPawWBZ8+4qqUlW6eUtmwOmsFBIKZuUakW6N9vN4ZDero7Ac3prwlCULO\nAZ+JNUQNslx1OWDN1F6DFtpo7ADiBe0CredbfEeeRPQqIAwmo0BhuLcBmec5zmeY\ndlZbyYVqBVfsO7nvZiU20p1mEA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-44syz@obote-dd403.iam.gserviceaccount.com",
+  "client_id": "117629468852723428086",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-44syz%40obote-dd403.iam.gserviceaccount.com"
+})
+})
+const db = admin.firestore();
 
+
+client.on('ready', () => {
+  console.log(`Loguei como ${client.user.tag}!, em ${client.guilds.cache.size} servers;
+     Comandos carregados: `);
+  fs.readdir(directoryPath, function (err, files) {
+    //handling error
+    if (err) {
+        return console.log('Unable to scan directory: ' + err);
+    } 
+    //listing all files using forEach
+    files.forEach(function (file) {
+        
+        console.log(file); 
+    });
+});
+}); //Log on console when ready.
+
+fs.readdir("./commands/", (err, files)  => { //Check commands folder the get the name and aliases for it.
+  if(err) console.log(err)
+
+  let jsfile = files.filter(f => f.split('.').pop() === 'js')
+  if(jsfile.length <= 0){
+    //If there's no file in commands folder, it returns with a error log
+    return console.log(`[LOGS] Não  encontrei os comandos`);
+  }
+  jsfile.forEach((f, i)  =>{
+    //Set names and aliases for each file in commands folder
+    let pull = require(`./commands/${f}`)
+    client.commands.set(pull.config.name, pull)
+    pull.config.aliases.forEach(alias  => {
+      client.aliases.set(alias, pull.config.name)
+    })
+  })
+})
 
 
 client.on('ready', () => {
@@ -29,296 +88,41 @@ client.on('ready', () => {
     }, 10000); // Runs this every 10 seconds.
 });
 
+
+
+
 client.on('message', async message => { 
- if (message.author.bot) return;
-  
-  
-  
-  let afkcheck = client.afk.get(message.author.id);
-  if (afkcheck) return [client.afk.delete(message.author.id), message.channel.send(`<@${message.author.id}> **nao está mais afk.** `)];
-  
-  
-  
-  let mencao = message.mentions.members.first()
-  if(mencao){
-    let mentioned = client.afk.get(mencao.id);
-     if (mentioned){
+if (message.author.bot) return; //If user is a bot, return
+if(message.channel.type === 'dm')return; //If command is used in dm and not in a guild, return
+
+const args = message.content.slice(prefix.length).trim().split(/ +/g); //Define arguments;
+const command = args.shift().toLowerCase(); //Define the command
+
+
+let afkcheck = client.afk.get(message.author.id);//Check afk data of user
+if (afkcheck) return [client.afk.delete(message.author.id), message.channel.send(`<@${message.author.id}> **nao está mais afk.** `)];//If user is afk,  it deletes the data.
+
+let mencao = message.mentions.members.first()//Check user mentioned
+if(mencao){//If theres someone mentioned runs this code
+    let mentioned = client.afk.get(mencao.id);//Get id of mentioned user
+     if (mentioned){//If data of mentioned === true
        var embed = new Discord.MessageEmbed()
        .setDescription(`<@${message.author.id}>: **${mentioned.tag}** Está afk: ${mentioned.reason}`)
-      message.channel.send(embed);
-}
-}
-  if (!message.content.startsWith(prefix)) return;
-
-  const serverQueue = queue.get(message.guild.id);
- if(message.content.startsWith(`${prefix}help`)){
-    message.channel.send(`${message.author.username}, ${prefix},  https://oobote.glitch.me`);
-   
-   
-  }  else  if(message.content.startsWith(`${prefix}play`)){
-    
-    const args = message.content.split(" ");
-      if (!message.member.voice.channel) return message.channel.send("You have to be in a voicechannel first.");
-
-    if (!args[1]) return message.channel.send("Please input a *URL* following the command!");
-  
-    let validate = await ytdl.validateURL(args[1]);
-
-    if (!args[1].includes('https://')){
-      const search = require('yt-search')
-      search(args.join(' '), function(err, res) {
-        if(err) return message.channel.send(`nao encontrei esse video`)
-        let videos = res.videos.slice(0, 10);
-        let resp = '';
-        for(var i in videos){
-          resp += `**[${parseInt(i)+1}]:** \`${videos[i].title} (${videos[i].duration.timestamp})\`\n`
-}
-        resp += `\n Escolha um numero entre \`1-${videos.length}\``
-        message.channel.send(resp)
-        
-        const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0
-        const collector = message.channel.createMessageCollector(filter)
-        collector.videos = videos;
-        collector.once('collect', async function(m) {
-          let urll = this.videos[parseInt(m.content)-1].url
-          let info = await ytdl.getInfo(urll)
-          let data = ops.get(message.guild.id) || {};
-         if(!data.connection) data.connection = await message.member.voice.channel.join();
-          if (!data.queue) data.queue = []
-          data.guildID = message.guild.id
-             data.queue.push({
-     songtitle: info.title,
-     requester: message.author.tag,
-     url: urll,
-     annoucechannel:  message.channel.id    
-})
-          if(!data.dispatcher)  play(client, ops, data)
-    
-    else {
-      message.channel.send(`Musica adicionada para a fila **${info.title}** | pedido por **${message.author.tag}**`)
-}
-    ops.set(message.guild.id, data)
-
-          
-})
-})
-} else {
-  let info = await ytdl.getInfo(args[1])
-  let data = ops.get(message.guild.id) || {};
-    if(!data.connection) data.connection = await message.member.voice.channel.join();
-    if (!data.queue) data.queue = []
-    data.guildID = message.guild.id
-   data.queue.push({
-     songtitle: info.title,
-     requester: message.author.tag,
-     url: args[1],
-     annoucechannel:  message.channel.id    
-})
-    if(!data.dispatcher)  play(client, ops, data)
-    
-    else {
-      message.channel.send(`Musica adicionada para a fila **${info.title}** | pedido por **${message.author.tag}**`)
-}
-    ops.set(message.guild.id, data)
-}
-
-    
-    
-
-
-    
-}
-  
-  
-  if(message.content.startsWith(`${prefix}leave`)){
-     if (!message.member.voice.channel) return message.channel.send("You have to be in a voicechannel first.");
-     if (!message.guild.me.voice.channel) return message.channel.send("Eu preciso estar em um canal de voz antes..");
-          
-     
-    message.guild.me.voice.channel.leave()
-    message.channel.send(`Saindo do canal..`)
-
-
-}
-  
-  
-  if(message.content === prefix+'test'){
-client.work.delete(message.author.id)
-    
-}
-               
- const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  
-    if(command === "say") {
-    // makes the bot say something and delete the message. As an example, it's open to anyone to use. 
-    // To get the "message" itself we join the `args` back into a string with spaces: 
-    const sayMessage = args.join(" ");
-    // Then we delete the command message (sneaky, right?). The catch just ignores the error with a cute smiley thing.
-    message.delete().catch(O_o=>{}); 
-    // And we get the bot to say the thing: 
-    message.channel.send(sayMessage);
-  }
-   if(command === "rainbow") {
-   
-   if(!message.guild) return;
-    if(!message.guild.member(client.user).hasPermission('MANAGE_ROLES')) return;
-   
-   var role = message.mentions.roles.first();
- 
-      if(!role){
-        return message.channel.send(`${message.author.username}, nao encontrei esse cargo`)
-
-      }
-     //https://prnt.sc/sef97y
-      let botrole = message.guild.roles.cache.find(r => r.name === `obote`)
-      if(!botrole){
-        return message.channel.send(`um erro aconteceu, tente criar um cargo com o nome 'obote' com a função de adm e coloqueo no topo dos cargos`)
-}
-       
-   if(role.position > botrole.position){
-     let newem  = new Discord.MessageEmbed()
-       .setDescription(`Nao consegui acessar esse cargo, tente me colocar no topo da lista de cargos`)
-       .setAuthor(message.author.username)
-     .setImage('https://i.imgur.com/7WCQ1pk.png')
-        
-    return await message.channel.send(newem)
-} 
-     var embed = new Discord.MessageEmbed()
-    .setDescription(`Agora o cargo \`\`\`${role.name}\`\`\` esta no modo colorido.`)
-   .setColor('PURPLE')
-       .setAuthor(message.author.username)
-  
-     .setThumbnail('https://images.vexels.com/media/users/3/159522/isolated/preview/b5bfb038832092a6fa192321f0df7d97-arco-arco---ris-by-vexels.png')
-        message.channel.send(embed)
-    setInterval(function(){
-       role.edit({
-            color: "RANDOM"
-        })
-      
-}, 5000)
-  }
-  if(command === 'meme') {
-    
-const randomPuppy = require('random-puppy');
-    
-    let reddits =  [
-        "meme",
-        "animemes",
-        "MemesOfAnime",
-        "animememes",
-        "AnimeFunny",
-        "dankmemes",
-        "dankmeme",
-        "wholesomememes",
-        "MemeEconomy",
-        "techsupportanimals",
-        "meirl",
-        "me_irl",
-        "2meirl4meirl",
-        "AdviceAnimals"
-    ]
-    
-     let subreddit = reddits[Math.floor(Math.random() * reddits.length)];
-    
-    
-    message.channel.startTyping();
-    
-    
-    randomPuppy(subreddit).then(async url => {
-            await message.channel.send({
-                files: [{
-                    attachment: url,
-                    name: 'meme.png'
-                }]
-            }).then(() => message.channel.stopTyping());
-    }).catch(err => console.error(err)); 
-    
-}
-  if(command === 'afk'){
-    let reason = args.join(' ') ? args.join(' ') : 'To afk. 🏃 💻 ';
-    let afklist = client.afk.get(message.author.id);
-    if (!afklist) {
-        let construct = {
-            id: message.author.id,
-            reason: reason,
-            tag: message.author.tag
-        };
-       
-        client.afk.set(message.author.id, construct);
-       var embed = new Discord.MessageEmbed()
-       .setDescription(`**${message.author.tag}** está AFK:  \`\`${reason}\`\``)
-        return message.channel.send(embed)
+      message.channel.send(embed); //Send message explaning if user is afk and why
     }
-
 }
-  if(command === 'uptime'){
-    
-const ms = require("pretty-ms");
-     const embed = new Discord.MessageEmbed()
-    .setFooter(`Pedido por: ${message.author.tag}`, message.author.displayAvatarURL)
-    .setDescription(`**estou acordado por** \`\`${ms(client.uptime)}\`\`   🤓`)
-    .setAuthor(client.user.tag, client.user.displayAvatarURL);
-    message.channel.send(embed);
-}else if(command === 'tts'){
-  if (!message.member.voice.channel) return message.channel.send("Voce precisa entrar em um canal de voz antes");
-
-    if (!args.join(' ')) return message.channel.send("Escreva a mensagem de tts a tocar.");
 
 
-let a = args.join(' ')
-a = a.replace(/ /g, '%20')
-  a = a.replace(/,/g, '%2C')
-    
 
-   console.log(`https://api.streamelements.com/kappa/v2/speech?voice=Brian&text=${a}`)
-    
-    let connection = await message.member.voice.channel.join()
-    let dispatcher  =  await connection.play(`https://api.streamelements.com/kappa/v2/speech?voice=Brian&text=${a}`)
+
+
+if(!message.content.startsWith(prefix))return;//If message dont starts with prefix, return.
+
+
+let commandfile = client.commands.get(command) || client.commands.get(client.aliases.get(command))//Get command file for the command when is trigered
+
+if(commandfile)  commandfile.run(client,message,args,ops,afk)//Runs the file if it exist;
   
-  
-  
-}else if(command === 'cor'){
-   var role = message.mentions.roles.first();
-  
-      if(!role){
-        return message.channel.send(`${message.author.username}, voce nao especificou o cargo.`)
-
-      }
-     //https://prnt.sc/sef97y
-  let botrole = message.guild.roles.cache.find(role => role.name === `obote`)
-      if(role.position > botrole.position){
-     let newem  = new Discord.MessageEmbed()
-       .setDescription(`Nao consegui acessar esse cargo, tente me colocar no topo da lista de cargos`)
-       .setAuthor(message.author.username)
-     .setImage('https://i.imgur.com/7WCQ1pk.png')
-        
-    return await message.channel.send(newem)
-}
-  
-  role.edit({
-            color: `${args[1]}`
-        })
-  message.channel.send(`Mudei a cor do cargo \`\`${role.name}\`\` para \`\`${args[1]}\`\``)
-
-   }
-  if(command === 'songlist'){
-    let pesquisado = ops.get(message.guild.id)
-    if(!pesquisado) return message.channel.send(`Nao tem nada tocando nesse canal`)
-    
-    let queuee = pesquisado.queue
-    let nowplayng = queuee[0]
-    
-    let resp = `\`\`\`fix\n Tocando agora:\n${nowplayng.songtitle} - Pedido por ${nowplayng.requester}\n\nLista de musicas:\n`
-    
-    for(var i = 1; i < queuee.length; i++){
-      resp += `${i}) ${queuee[i].songtitle} - Pedido por: ${queuee[i].requester}\n`
-}
-    message.channel.send(`${resp}\n\`\`\``)
-    
-    
-}
-   
 
   
                     
@@ -326,30 +130,6 @@ a = a.replace(/ /g, '%20')
 
   
 });
-    async function play(client, ops, data){
-      client.channels.cache.get(data.queue[0].annoucechannel).send(`Tocando agora: **${data.queue[0].songtitle}** | pedido por **${data.queue[0].requester}**`)
-      data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly' }))
-      data.dispatcher.guildID = data.guildID;
-      
-      data.dispatcher.once('finish', function(){
-        finish(client, ops, this)
-})
-    }
+   
 
-      function finish(client, ops, dispatcher){
-        let fetched = ops.get(dispatcher.guildID)
-        fetched.queue.shift();
-        
-        if(fetched.queue.length > 0){
-          ops.set(dispatcher.guildID, fetched)
-          play(client, ops, fetched)
-            } else {
-               ops.delete(dispatcher.guildID)
-              
-              let vc = client.guilds.cache.get(dispatcher.guildID).me.voice.channel;
-              if(vc) vc.leave()
-            }
-}
-
-
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN); // Logs in Discord API with bot's token
