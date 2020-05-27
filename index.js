@@ -17,7 +17,7 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 const afk = client.afk;
 //Prefix
-let prefix = '+';
+let prefix;
 //Other Things
 const directoryPath = path.join(__dirname, 'commands');
 //Firebase
@@ -95,8 +95,36 @@ client.on('message', async message => {
 if (message.author.bot) return; //If user is a bot, return
 if(message.channel.type === 'dm')return; //If command is used in dm and not in a guild, return
 
+db.collection('Guild').doc(message.guild.id).get().then((q) => {
+  if(!q.exists){
+   db.collection('Guild').doc(message.guild.id).set({
+    "guildName": message.guild.name,
+    "guildMemberCount": message.guild.members.cache.filter(member => !member.user.bot).size,
+    "guildBotCount": message.guild.members.cache.filter(member => member.user.bot).size,
+    "guildOwner": message.guild.owner.user.username,
+    "guildId": message.guild.id,
+    "guildOwnerID": message.guild.owner.id,
+    "prefix": '+',
+    "totalMembers": message.guild.members.cache.filter(member => !member.user.bot).size + message.guild.members.cache.filter(member => member.user.bot).size
+   });
+   prefix = '+'
+  } else {
+    prefix = q.data().prefix
+  }  
+  }).then(() => {
 const args = message.content.slice(prefix.length).trim().split(/ +/g); //Define arguments;
 const command = args.shift().toLowerCase(); //Define the command
+
+
+
+  
+
+
+
+
+
+
+
 
 
 let afkcheck = client.afk.get(message.author.id);//Check afk data of user
@@ -121,7 +149,11 @@ if(!message.content.startsWith(prefix))return;//If message dont starts with pref
 
 let commandfile = client.commands.get(command) || client.commands.get(client.aliases.get(command))//Get command file for the command when is trigered
 
-if(commandfile)  commandfile.run(client,message,args,ops,afk)//Runs the file if it exist;
+if(commandfile)  commandfile.run(client,message,args,ops,afk,db,prefix)//Runs the file if it exist;
+
+})
+
+
   
 
   
@@ -130,6 +162,67 @@ if(commandfile)  commandfile.run(client,message,args,ops,afk)//Runs the file if 
 
   
 });
+
+client.on('guildCreate', async data => {
+  db.collection('Guild').doc(data.id).set({
+    "guildName": data.name,
+    "guildMemberCount": data.members.cache.filter(member => !member.user.bot).size,
+    "guildBotCount": data.members.cache.filter(member => member.user.bot).size,
+    "guildOwner": data.owner.user.username,
+    "guildId": data.id,
+    "guildOwnerID": data.owner.id,
+    "prefix": '+',
+    "totalMembers": data.members.cache.filter(member => !member.user.bot).size + data.members.cache.filter(member => member.user.bot).size   
+   });
+})
+
+
+client.on("guildMemberAdd", async member => {
+  let data = member.guild;
+   db.collection('Guild').doc(data.id).get().then((q) => {
+    if(!q.exists){
+      db.collection('Guild').doc(data.id).set({
+    "guildName": data.name,
+    "guildMemberCount": data.members.cache.filter(amember => !amember.user.bot).size,
+    "guildBotCount": data.members.cache.filter(amember => amember.user.bot).size,
+    "guildOwner": data.owner.user.username,
+    "guildId": data.id,
+    "guildOwnerID": data.owner.id,
+    "prefix": '+',
+    "totalMembers": data.memberCount 
+   });
+    } else {
+      db.collection('Guild').doc(data.id).update({
+    "guildMemberCount": data.members.cache.filter(amember => !amember.user.bot).size,
+    "guildBotCount": data.members.cache.filter(amember => amember.user.bot).size,
+    "totalMembers": data.memberCount  
+   });
+    }
+   })
+});
+client.on('guildMemberRemove', async member => {
+ const guild = member.guild;
+db.collection('Guild').doc(guild.id).get().then((q) => {
+    if(!q.exists){
+      db.collection('Guild').doc(guild.id).set({
+    "guildName": guild.name,
+    "guildMemberCount": guild.members.cache.filter(m => !m.user.bot).size,
+    "guildBotCount": guild.members.cache.filter(m => m.user.bot).size,
+    "guildOwner": guild.owner.user.username,
+    "guildId": guild.id,
+    "guildOwnerID": guild.owner.id,
+    "prefix": '+',
+    "totalMembers": guild.memberCount
+   });
+    } else {
+      db.collection('Guild').doc(guild.id).update({
+    "guildMemberCount": guild.members.cache.filter(amember => !amember.user.bot).size,
+    "guildBotCount": guild.members.cache.filter(amember => amember.user.bot).size,
+    "totalMembers": guild.memberCount
+   });
+    }
+   })
+})
    
 
 client.login(process.env.BOT_TOKEN); // Logs in Discord API with bot's token
