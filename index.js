@@ -161,6 +161,9 @@ if(commandfile)  commandfile.run(client,message,args,ops,afk,db,prefix)//Runs th
 
   
 });
+client.on('guildDelete', async data => {
+  db.collection('Guild').doc(data.id).delete()
+})
 
 client.on('guildCreate', async data => {
   db.collection('Guild').doc(data.id).set({
