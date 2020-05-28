@@ -24,15 +24,14 @@ const directoryPath = path.join(__dirname, 'commands');
 admin.initializeApp({
   credential: admin.credential.cert({
   "type": "service_account",
-  "project_id": "obote-dd403",
-  "private_key_id": "96f88b6e39df8d9dd89beb58cb659dde8ad8819f",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCwlZWSENlNGlGm\nPrNX98amUNdXPVk/HYka4YCXOGCkVjhxXTuAL460F7+WOgHd1NQAlB/EKSIePBRW\nZiNdm2HxAO9SL9wl6lH9Bzc4f5gSBPKfQ4+eW3lXpFwNiuYt0ixnyhjYUt+Abh8i\n0zq239Ux5iKX/2YUwYbxf4RMIj2VAImcus1C4G8T1wwR5HQrVwurUnQa1RgK6fK3\nP2Ejx6UsWRAb1w2m5WTjuczwq/PlSOcdmh7/tPl47pXcSatRunI5OzBYB4qT9vch\nfJPKAZGN3RTltzou1Paf1OwunauWA+/g+TMoLYjYn0R73uIQoHHy4KELudVN6rvm\nV2KrjuexAgMBAAECggEAA01862s0wUArhEY6cPwBo2UyLd/IHknVYWMT1mA30IML\nUbV6ciqRivVBwFPL6qP7JhqfIHpbeMDLaZVF9o98LLeFgl5CShRAndCne/9I7xdY\nGVn4YvAXjCfXD+rH5NYAPh21yr/8DakhnHNibv6vPFxvS7P7awp2lWg653ihebqt\noIS8erFcwekgaMhx0Zms/tZ7Ebxmrvn1x6UYoIDHc8W3a4nf25d+sAgyEVl+b1ZO\n7du6LeBFIpUrkOhUJ0oI7RBT1l7kIjPUo6MgPYHM59G0CwD2InLlcgLsL7aNyxMW\neS+30vYmbOBzRRB5rBvlIXUtqY8efQggKMdwJblGcQKBgQDhvhE2tHnJk7rPt0Mq\nnJ06xP8cvy0ugZQQJwRRt8BBE1Hncz5qvGD3bRda1nPkAPt/nobfwBmfjGsYQeET\nMJACGdVvvd4TF2gA2jrlTaCLnFWEua1dKFITfGkdQXhEymN4A+vaoPeRis7mZLR6\nOdUV46YLmuwHYF69hpREdrTPWQKBgQDIQL80aSdtUIQtVei+3t+z3dHfYTJYdloq\nSDPnCmkJ3PKmsxTswJGhnlc8/hA3ZmscK6iRdlYqs7HFvsVPyj5+uL8BQKxqd0rb\ncpcTSAA9G4nI77tOZgCV/KeNAVrDB2Idr8u2Q9yMhd1JJmmww04M/NZqDef0Awjm\nOCoY5i7oGQKBgQDdFB6Zm8BWKQbgXJM8DStynfFWfuhJzn9qHjv9p95yHPCuok+z\nio/QYZdoz/OpjUjBIEjooqK1fXh4xjQebgXq+M/t4l22BstFYnQhk5eygsXB+XIO\ndOmEyefLzg1yGV+27ugyMkii0fV075VMyoykJlG8tdmIE9pU9JMKRdMn6QKBgQC8\nKkLAL7Kxf//DTb82YtwW+e70FDOndgZBRrkmdty+PNPxGcMmt8ff8pYMpLp+JAmv\nXcK2dFiBJXp80kY7NFHG5zfrKGcaX1+Clskof/ZhdRfiLIl3IFeal96km0o6ihyC\nwqYLbPa3QC3vR132j34urAGZg9mZqqRZFxtPbDNVOQKBgQCBU1R40PGaqGKNy0hI\nbIPtMYgRPawWBZ8+4qqUlW6eUtmwOmsFBIKZuUakW6N9vN4ZDero7Ac3prwlCULO\nAZ+JNUQNslx1OWDN1F6DFtpo7ADiBe0CredbfEeeRPQqIAwmo0BhuLcBmec5zmeY\ndlZbyYVqBVfsO7nvZiU20p1mEA==\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-44syz@obote-dd403.iam.gserviceaccount.com",
-  "client_id": "117629468852723428086",
+  "project_id": process.env.PROJECT_ID,
+  "private_key_id": process.env.PRIVATE_KEY_ID,
+  "private_key": process.env.PRIVATE_KEY,
+  "client_id": process.env.CLIENT_ID,
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-44syz%40obote-dd403.iam.gserviceaccount.com"
+  "client_x509_cert_url": process.env.CLIENT_X509_CERT_URL
 })
 })
 const db = admin.firestore();
