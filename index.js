@@ -78,7 +78,7 @@ client.on('ready', () => {
    "BRUHBRUH",
    "+help",
    "https://obote.glitch.me/",
-  `online em ${client.guilds.cache.size} severs`,
+  `online em ${client.guilds.cache.size} servers`,
   `com ${client.users.cache.size} users`
     ]; // creates an arraylist containing phrases you want your bot to switch through.
     setInterval(() => {
