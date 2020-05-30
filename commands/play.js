@@ -118,8 +118,5 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
 module.exports.config = {
 	name:  "play",
-	aliases: ["tocar", "p"],
-	usage: "play some-music-here",
-	categoria: "musica",
-	description: "comando para ouvir musicas, use um link ou escreva o link da musica"
+	aliases: ["tocar", "p"]
 }
