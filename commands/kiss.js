@@ -13,10 +13,9 @@ module.exports.run = async (client, message, args, ops, afk) => {
 	let avatar = message.author.displayAvatarURL({format: 'png'})
 	const returnembed = new Discord.MessageEmbed()
 	.setColor('BLACK')
-	.setDescription(`**${message.mentions.members.first()} beijou  <@${message.author.id}>!** 😳`)
+	.setDescription(`**${message.mentions.members.first()} deu um beijo de volta em <@${message.author.id}>!** 😳`)
 	.setImage(kisses[fact])
 	.setTimestamp()
-	.setFooter(`Reaja com para retribuir`)
 	.setAuthor(message.author.tag, avatar);
 
    let embed = new Discord.MessageEmbed()
