@@ -3,7 +3,7 @@ const ytdl = require("ytdl-core");
 module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
 
-  if (!message.member.voice.channel) return message.channel.send("Voce precisa estar em um canal de voz antes.");
+  if (!message.member.voice.channel) return message.channel.send("Você precisa estar em um canal de voz antes.");
 
     if (!args[0]) return message.channel.send("Coloque um url valido!");
   
@@ -88,7 +88,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
  async function play(client, ops, data){
 	 const ytembed = new Discord.MessageEmbed()
-	 .setDescription(`Tocando Agora [${data.queue[0].songtitle}](data.queue[0].url)  [<@${data.queue[0].authorid}>]`)
+	 .setDescription(`Tocando agora [${data.queue[0].songtitle}](data.queue[0].url)  [<@${data.queue[0].authorid}>]`)
          .setThumbnail(data.queue[0].thumbnail)
       client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
       data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly' }))
