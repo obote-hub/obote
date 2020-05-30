@@ -46,7 +46,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
     else {
      let searchembed = new Discord.MessageEmbed()
       .setDescription(`Musica adicionada para a fila **${info.title}** [<@${message.author.id}>] `)
-      .setImage(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
+      .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
       message.channel.send(searchembed)
 }
     ops.set(message.guild.id, data)
@@ -76,7 +76,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
     else {
       let embed = new Discord.MessageEmbed()
       .setDescription(`Musica adicionada para a fila **${info.title}** [<@${message.author.id}>] `)
-      .setImage(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
+      .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
       message.channel.send(embed)
 }
     ops.set(message.guild.id, data)
@@ -110,6 +110,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
               let vc = client.guilds.cache.get(dispatcher.guildID).me.voice.channel;
               if(vc) vc.leave()
             }
+	      
 }
 
 
