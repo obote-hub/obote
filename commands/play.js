@@ -91,7 +91,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 	 .setThumbnail(data.queue[0].thumbnail)
 	 .addField(`Music`, `Tocando agora [${data.queue[0].songtitle}](${data.queue[0].url})  [<@${data.queue[0].authorid}>]`, false)
       client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
-      data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly' }))
+      data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly', quality: "highestaudio" }))
       data.dispatcher.guildID = data.guildID;
       
       data.dispatcher.once('finish', function(){
