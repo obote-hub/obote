@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
        
         client.afk.set(message.author.id, construct);
        var embed = new Discord.MessageEmbed()
-       .setDescription(`**${message.author.tag}** está AFK:  \`\`${reason}\`\``)
+       .setDescription(`**${message.author.tag}** está AFK:      ${reason}`)
         return message.channel.send(embed)
     }
 
