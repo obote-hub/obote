@@ -18,6 +18,8 @@
   "homepage": "https://github.com/udarkness/discord-obote#readme",
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
+    "cpu-stat": "^2.0.1",
+    "dateformat": "^3.0.3",
     "discord.js": "^12.2.0",
     "ffmpeg": "0.0.4",
     "firebase": "^7.14.5",
@@ -25,6 +27,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "moment": "^2.26.0",
     "moment-duration-format": "^2.3.2",
+    "parse-ms": "^2.1.0",
     "pretty-ms": "^7.0.0",
     "random-puppy": "^1.1.0",
     "yt-search": "^1.1.2",
