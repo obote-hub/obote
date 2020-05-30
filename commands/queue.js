@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
  	let queue = fetched.queue;
     let nowplay = queue[0];
 
-    let resp = `\`\`\`nimrod ⬐ tocando agora\n1) ${nowplay.songtitle}\n⬑ tocando agora\n\n`
+    let resp = `\`\`\`nimrod\n ⬐ tocando agora\n1) ${nowplay.songtitle}\n⬑ tocando agora\n\n`
 
     for(var i = 1; i < queue.length; i++){
     	resp += `${i}) ${queue[i].songtitle}\n`;
@@ -15,7 +15,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
     }
   
 
-    resp += `\n\n Esse é o final da lista de musica!\n Use ${prefix}play para ouvir mais. \`\`\``
+    resp += `\n\n Esse é o final da lista de musica!\n Use ${prefix}play para ouvir mais.\n \`\`\``
   message.channel.send(resp)
 }
 
