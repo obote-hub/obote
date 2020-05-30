@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args, ops, afk, db) => {
 let user = message.mentions.users.first() || message.author; // You can do it by mentioning the user, or not.
     
     if (user.presence.status === "dnd") user.presence.status = "Nao disturbe.";
-    if (user.presence.status === "idle") user.presence.status = "Idle";
+    if (user.presence.status === "idle") user.presence.status = "Ausente";
     if (user.presence.status === "offline") user.presence.status = "Offline";
     if (user.presence.status === "online") user.presence.status = "Online";
     
