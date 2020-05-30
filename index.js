@@ -122,7 +122,10 @@ db.collection('Guild').doc(message.guild.id).get().then((q) => {
   }).then(() => {
 const args = message.content.slice(prefix.length).trim().split(/ +/g); //Define arguments;
 const command = args.shift().toLowerCase(); //Define the command
-
+  
+ if (message.mentions.has(client.user)) {
+            return message.channel.send(`**Meu prefixo nesse server é - \`${prefix}\`**`)
+        }
 let afkcheck = client.afk.get(message.author.id);//Check afk data of user
 if (afkcheck) return [client.afk.delete(message.author.id), message.channel.send(`<@${message.author.id}> **nao está mais afk.** `)];//If user is afk,  it deletes the data.
 
