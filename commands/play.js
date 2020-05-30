@@ -36,6 +36,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
           data.guildID = message.guild.id
              data.queue.push({
      songtitle: info.title,
+     thumbnail: `https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`,
      requester: message.author.tag,
      url: urll,
      annoucechannel:  message.channel.id    
@@ -43,7 +44,10 @@ module.exports.run = async (client, message, args, ops, afk) => {
           if(!data.dispatcher)  play(client, ops, data)
     
     else {
-      message.channel.send(`Musica adicionada para a fila **${info.title}** | pedido por **${message.author.tag}**`)
+     let searchembed = new Discord.MessageEmbed()
+      .setDescription(`Musica adicionada para a fila **${info.title}** [<@${message.author.id}>] `)
+      .setImage(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
+      message.channel.send(searchembed)
 }
     ops.set(message.guild.id, data)
 
@@ -62,6 +66,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
     data.guildID = message.guild.id
     data.queue.push({
     songtitle: info.title,
+    thumbnail: `https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`,
     requester: message.author.tag,
     url: args[0],
     annoucechannel:  message.channel.id    
@@ -69,7 +74,10 @@ module.exports.run = async (client, message, args, ops, afk) => {
     if(!data.dispatcher)  play(client, ops, data)
     
     else {
-      message.channel.send(`Musica adicionada para a fila **${info.title}** | pedido por **${message.author.tag}**`)
+      let embed = new Discord.MessageEmbed()
+      .setDescription(`Musica adicionada para a fila **${info.title}** [<@${message.author.id}>] `)
+      .setImage(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
+      message.channel.send(embed)
 }
     ops.set(message.guild.id, data)
 }
@@ -77,7 +85,10 @@ module.exports.run = async (client, message, args, ops, afk) => {
 }
 
  async function play(client, ops, data){
-      client.channels.cache.get(data.queue[0].annoucechannel).send(`Tocando agora: **${data.queue[0].songtitle}** | pedido por **${data.queue[0].requester}**`)
+	 const ytembed = new Discord.MessageEmbed()
+	 .setDescription(`Tocando agora: **${data.queue[0].songtitle}** | pedido por **${data.queue[0].requester}**`)
+         .setImage(data.queue[0].thumbnail)
+      client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
       data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly' }))
       data.dispatcher.guildID = data.guildID;
       
