@@ -8,18 +8,26 @@ const ytdl = require("ytdl-core");
 const path = require('path');
 //Main Client
 const client = new Discord.Client();
-//Database
+//Discord maps
 const ops = new Map();
 const queue = new Map();
+client.mute = new Map();
 client.afk = new Map();
 client.work = new Map();
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 const afk = client.afk;
+const mute = client.mute;
 //Prefix
 let prefix;
 //Other Things
 const directoryPath = path.join(__dirname, 'commands');
+let countChannel = {
+  total: "716122989921435729",
+  member: "716123124449411073",
+  bots: "716123012000252025",
+  serverID: "713563486155833424"
+} 
 //Firebase
 admin.initializeApp({
   credential: admin.credential.cert({
@@ -115,18 +123,6 @@ db.collection('Guild').doc(message.guild.id).get().then((q) => {
 const args = message.content.slice(prefix.length).trim().split(/ +/g); //Define arguments;
 const command = args.shift().toLowerCase(); //Define the command
 
-
-
-  
-
-
-
-
-
-
-
-
-
 let afkcheck = client.afk.get(message.author.id);//Check afk data of user
 if (afkcheck) return [client.afk.delete(message.author.id), message.channel.send(`<@${message.author.id}> **nao está mais afk.** `)];//If user is afk,  it deletes the data.
 
@@ -149,7 +145,7 @@ if(!message.content.startsWith(prefix))return;//If message dont starts with pref
 
 let commandfile = client.commands.get(command) || client.commands.get(client.aliases.get(command))//Get command file for the command when is trigered
 
-if(commandfile)  commandfile.run(client,message,args,ops,afk,db,prefix)//Runs the file if it exist;
+if(commandfile)  commandfile.run(client,message,args,ops,afk,db,prefix,mute)//Runs the file if it exist;
 
 })
 
