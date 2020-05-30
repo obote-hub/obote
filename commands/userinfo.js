@@ -12,7 +12,7 @@ let user = message.mentions.users.first() || message.author; // You can do it by
     
     function game() {
       let game;
-      if (user.presence.activities.length >= 1) game = `${user.presence.activities[0].type} ${user.presence.activities[0].name}`;
+      if (user.presence.activities.length >= 1) game = `**${user.presence.activities[0].type}**: ${user.presence.activities[0].name}`;
       else if (user.presence.activities.length < 1) game = "Nenhum"; // This will check if the user doesn't playing anything.
       return game; // Return the result.
     }
