@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
         resp += `\n Escolha um numero entre \`1-${videos.length}\``
         message.channel.send(resp)
         
-        const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0 && !m.content.startsWith(prefix)
+        const filter = m => !isNaN(m.content) && m.content < videos.length+1 && m.content > 0 
         const collector = message.channel.createMessageCollector(filter)
         collector.videos = videos;
         collector.once('collect', async function(m) {
