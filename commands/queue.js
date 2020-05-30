@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
     let resp = `\`\`\`nimrod\n ⬐ tocando agora\n1) ${nowplay.songtitle}\n⬑ tocando agora\n\n`
 
     for(var i = 1; i < queue.length; i++){
-    	resp += `${i}) ${queue[i].songtitle}\n`;
+    	resp += `${i+1}) ${queue[i].songtitle}\n`;
 
     }
   
