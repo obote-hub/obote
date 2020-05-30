@@ -39,13 +39,14 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
      thumbnail: `https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`,
      requester: message.author.tag,
      url: urll,
-     annoucechannel:  message.channel.id    
+     annoucechannel:  message.channel.id,
+     authorid: message.author.id		     
 })
           if(!data.dispatcher)  play(client, ops, data)
     
     else {
      let searchembed = new Discord.MessageEmbed()
-      .setDescription(`Musica adicionada para a fila **${info.title}** [<@${message.author.id}>] `)
+      .setDescription(`Adicionado para a fila [**${info.title}**](info.url) [<@${message.author.id}>] `)
       .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
       message.channel.send(searchembed)
 }
@@ -69,13 +70,14 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     thumbnail: `https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`,
     requester: message.author.tag,
     url: args[0],
-    annoucechannel:  message.channel.id    
+    annoucechannel:  message.channel.id,
+    authorid: message.author.id
 })
     if(!data.dispatcher)  play(client, ops, data)
     
     else {
       let embed = new Discord.MessageEmbed()
-      .setDescription(`Musica adicionada para a fila **${info.title}** [<@${message.author.id}>] `)
+      .setDescription(`Musica adicionada para a fila [**${info.title}**](info.url) [<@${message.author.id}>] `)
       .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
       message.channel.send(embed)
 }
@@ -86,7 +88,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
  async function play(client, ops, data){
 	 const ytembed = new Discord.MessageEmbed()
-	 .setDescription(`Tocando agora: **${data.queue[0].songtitle}** | pedido por **${data.queue[0].requester}**`)
+	 .setDescription(`Tocando Agora [**${data.queue[0].songtitle}**](data.queue[0].url)  [<@${data.queue[0].authorid}>]`)
          .setThumbnail(data.queue[0].thumbnail)
       client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
       data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly' }))
