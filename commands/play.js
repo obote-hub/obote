@@ -87,7 +87,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
  async function play(client, ops, data){
 	 const ytembed = new Discord.MessageEmbed()
 	 .setDescription(`Tocando agora: **${data.queue[0].songtitle}** | pedido por **${data.queue[0].requester}**`)
-         .setImage(data.queue[0].thumbnail)
+         .setThumbnail(data.queue[0].thumbnail)
       client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
       data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly' }))
       data.dispatcher.guildID = data.guildID;
