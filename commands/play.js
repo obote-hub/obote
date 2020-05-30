@@ -46,7 +46,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     
     else {
      let searchembed = new Discord.MessageEmbed()
-      .addField(`Music`, `Adicionado para a fila [${info.title}](info.url) [<@${message.author.id}>] `)
+      .addField(`Music`, `Adicionado para a fila [${info.title}](info.url) [<@${message.author.id}>] `, false)
       .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
       message.channel.send(searchembed)
 }
@@ -77,7 +77,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     
     else {
       let embed = new Discord.MessageEmbed()
-      .addField(`Music`, `Musica adicionada para a fila [${info.title}](info.url) [<@${message.author.id}>] `)
+      .addField(`Music`, `Musica adicionada para a fila [${info.title}](info.url) [<@${message.author.id}>] `, false)
       .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
       message.channel.send(embed)
 }
@@ -88,7 +88,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
  async function play(client, ops, data){
 	 const ytembed = new Discord.MessageEmbed()
-	 .addField(`Music`, `Tocando agora [${data.queue[0].songtitle}](data.queue[0].url)  [<@${data.queue[0].authorid}>]`)
+	 .addField(`Music`, `Tocando agora [${data.queue[0].songtitle}](data.queue[0].url)  [<@${data.queue[0].authorid}>]`, false)
          .setThumbnail(data.queue[0].thumbnail)
       client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
       data.dispatcher = await data.connection.play(ytdl(data.queue[0].url, { filter: 'audioonly' }))
