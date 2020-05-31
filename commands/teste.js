@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
   
 
   for (const video of Object.values(videos)) {
-  console.log(video)
+  console.log(video.id)
   
    
 
