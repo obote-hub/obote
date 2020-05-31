@@ -80,17 +80,17 @@ module.exports.run = async (client, message, args, ops, afk) => {
       data.dispatcher.guildID = data.guildID;
       
       data.dispatcher.once('finish', function(){
-        finish(client, ops, this)
+        finish(info, client, ops, this, playlist = false)
 })
     }
 
-      function finish(client, ops, dispatcher){
+      function finish(info, client, ops, dispatcher, playlist = false){
         let fetched = ops.get(dispatcher.guildID)
         fetched.queue.shift();
         
         if(fetched.queue.length > 0){
           ops.set(dispatcher.guildID, fetched)
-          play(client, ops, fetched)
+          play(info, client, ops, fetched, playlist= false)
             } else {
                ops.delete(dispatcher.guildID)
               
