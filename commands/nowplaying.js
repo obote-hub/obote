@@ -94,10 +94,11 @@ try {
                     }`;
                 return duration;
             }
+            */
         } catch(err) {
             message.channel.send(err)
         }
-        */
+        
         
 }
 
