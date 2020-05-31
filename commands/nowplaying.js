@@ -24,7 +24,7 @@ try {
             } else {
                 description = playbackBar(video);
             }
-            const videoEmbed = new MessageEmbed()
+            const videoEmbed = new Discord.MessageEmbed()
                 .setThumbnail(video.thumbnail)
                 .setColor('GREEN')
                 .setTitle(video.title)
