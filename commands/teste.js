@@ -35,19 +35,18 @@ module.exports.run = async (client, message, args, ops, afk) => {
     annoucechannel:  message.channel.id,
     authorid: message.author.id
 })
-   if(!data.dispatcher)  play(client, ops, data, playlist, video)
-    
-    else {
-     let embed = new Discord.MessageEmbed()
-      .setThumbnail(`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`)
-      .addField(`Music`, `Playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
-      message.channel.send(embed)
-}
+   play(client, ops, data, true)
+   
+
     ops.set(message.guild.id, data)
 
 	  
 	  
   }
+	let embed = new Discord.MessageEmbed()
+      .setThumbnail(`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`)
+      .addField(`Music`, `Playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
+      message.channel.send(embed)
   } else {
   
     
@@ -63,7 +62,17 @@ module.exports.run = async (client, message, args, ops, afk) => {
   
 }
 
- async function play(client, ops, data, playlist, video){
+ async function play(client, ops, data, playlist = false){
+	 if(data.dispatcher){
+		 if (playlist) return undefined;
+		 else{
+       let eeembed = new Discord.MessageEmbed()
+      .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
+      .addField(`Music`, `Musica adicionada para a fila [${info.title}](${args[0]}) [<@${message.author.id}>] `, false)
+      message.channel.send(eeembed)
+		 }
+		 return undefined;
+	 }
 	 const ytembed = new Discord.MessageEmbed()
 	 .setThumbnail(data.queue[0].thumbnail)
 	 .addField(`Music`, `Tocando agora [${data.queue[0].songtitle}](${data.queue[0].url})  [<@${data.queue[0].authorid}>]`, false)
