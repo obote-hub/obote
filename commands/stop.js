@@ -12,7 +12,9 @@ if (!channel) return message.channel.send('Me desculpa mas voce precisa estar em
         if (!serverQueue) return message.channel.send('❌ **Nada tocando nesse server**');
         
         serverQueue.dispatcher.end()
-        ops.delete(dispatcher.guildID)
+	let data = ops.get(message.guild.id)
+	let dispatcher = data.guildID
+        ops.delete(dispatcher)
         await message.react("👋")
         return message.channel.send('👋 **Disconectado**')
         
