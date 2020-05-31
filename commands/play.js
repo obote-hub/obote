@@ -32,6 +32,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
         collector.once('collect', async function(m) {
           let urll = this.videos[parseInt(m.content)-1].url
           let info = await ytdl.getInfo(urll)
+	  var video = await youtube.getVideoByID(info.video_id)
           let data = ops.get(message.guild.id) || {};
          if(!data.connection) data.connection = await message.member.voice.channel.join();
           if (!data.queue) data.queue = []
@@ -42,7 +43,8 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
      requester: message.author.tag,
      url: urll,
      annoucechannel:  message.channel.id,
-     authorid: message.author.id		     
+     authorid: message.author.id,
+     duration: video.duration
 })
           if(!data.dispatcher)  play(client, ops, data)
     
@@ -80,7 +82,8 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     requester: message.author.tag,
     url: `https://www.youtube.com/watch?v=${video.id}`,
     annoucechannel:  message.channel.id,
-    authorid: message.author.id
+    authorid: message.author.id,
+    duration: video.duration
 })
    if(!data.dispatcher)  play(client, ops, data, playlist, video)
     
@@ -118,7 +121,8 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     requester: message.author.tag,
     url: args[0],
     annoucechannel:  message.channel.id,
-    authorid: message.author.id
+    authorid: message.author.id,
+    duration: video.duration
 })
     if(!data.dispatcher)  play(client, ops, data)
     
