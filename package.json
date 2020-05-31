@@ -30,6 +30,7 @@
     "parse-ms": "^2.1.0",
     "pretty-ms": "^7.0.0",
     "random-puppy": "^1.1.0",
+    "simple-youtube-api": "^5.2.1",
     "yt-search": "^1.1.2",
     "ytdl-core": "^2.1.4"
   }
