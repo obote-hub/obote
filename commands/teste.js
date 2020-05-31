@@ -44,7 +44,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
       message.channel.send(embed)
 }
     ops.set(message.guild.id, data)
-}
+
 	  
 	  
   }
@@ -60,7 +60,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 
 }
-  }
+  
 }
 
  async function play(client, ops, data, playlist, video){
