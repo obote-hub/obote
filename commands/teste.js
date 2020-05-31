@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
     annoucechannel:  message.channel.id,
     authorid: message.author.id
 })
-   play(info, client, ops, data, true)
+  if(!data.dispatcher) play(info, client, ops, data, true)
    
 
     ops.set(message.guild.id, data)
