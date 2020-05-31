@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
     annoucechannel:  message.channel.id,
     authorid: message.author.id
 })
-   play(client, ops, data, true)
+   play(info, client, ops, data, true)
    
 
     ops.set(message.guild.id, data)
@@ -45,7 +45,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
   }
 	let embed = new Discord.MessageEmbed()
       .addField(`Music`, `Playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
-      message.channel.send(embed)
+       return message.channel.send(embed)
   } else {
   
     
@@ -61,7 +61,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
   
 }
 
- async function play(client, ops, data, playlist = false){
+ async function play(info, client, ops, data, playlist = false){
 	 if(data.dispatcher){
 		 if (playlist) return undefined;
 		 else{
