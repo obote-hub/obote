@@ -97,7 +97,7 @@ async function handlePlaylist(client, data){
 	
 	
 	
-})
+}
 
 
 
