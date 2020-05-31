@@ -38,9 +38,10 @@ module.exports.run = async (client, message, args, ops, afk) => {
    if(!data.dispatcher)  play(client, ops, data, playlist, video)
     
     else {
-      let embed = new Discord.MessageEmbed()
+     let embed = new Discord.MessageEmbed()
+      .setThumbnail(`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`)
       .addField(`Music`, `Playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
-     return message.channel.send(embed)
+      message.channel.send(embed)
 }
     ops.set(message.guild.id, data)
 
