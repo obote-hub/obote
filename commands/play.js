@@ -86,6 +86,20 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
 }
 
+
+
+
+async function handlePlaylist(client, data){
+	
+	
+	
+	
+	
+})
+
+
+
+
  async function play(client, ops, data){
 	 const ytembed = new Discord.MessageEmbed()
 	 .setThumbnail(data.queue[0].thumbnail)
