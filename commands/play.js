@@ -87,7 +87,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     else {
      let embed = new Discord.MessageEmbed()
       .setThumbnail(`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`)
-      .addField(`Music`, `Playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
+      .addField(`Music`, `Musica [${video.title}](https://www.youtube.com/watch?v=${video.id}) da playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
       message.channel.send(embed)
 }
     ops.set(message.guild.id, data)
