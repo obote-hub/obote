@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
   
     let validate = await ytdl.validateURL(args[0]);
 
-    if (!args[0].includes('https://') || !args[0].includes('.com') || !args[0].includes('youtu.be') || !args[0].includes('www.')){
+    if (!args[0].includes('https://')){
       const search = require('yt-search')
       search(args.join(' '), function(err, res) {
         if(err) return message.channel.send(`Não encontrei esse video`)
