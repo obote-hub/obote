@@ -44,7 +44,6 @@ module.exports.run = async (client, message, args, ops, afk) => {
 	  
   }
 	let embed = new Discord.MessageEmbed()
-      .setThumbnail(`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`)
       .addField(`Music`, `Playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
       message.channel.send(embed)
   } else {
