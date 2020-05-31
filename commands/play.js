@@ -11,7 +11,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
   
     let validate = await ytdl.validateURL(args[0]);
 
-    if (!args[0].includes('https://')){
+    if (!args[0].includes('https://') || !args[0].includes('.com') || !args[0].includes('youtu.be') || !args[0].includes('www.')){
       const search = require('yt-search')
       search(args.join(' '), function(err, res) {
         if(err) return message.channel.send(`Não encontrei esse video`)
@@ -59,10 +59,55 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 })
 
 } else {
+	
+  if(!validate){
+     
+  if(args[0].includes('playlist')){
 
+  const playlist = await youtube.getPlaylist(args[0])
+  const videos = await playlist.getVideos();
   
 
-    let info = await ytdl.getInfo(args[0])
+  for (const video of Object.values(videos)) {
+    let info = await ytdl.getInfo(`https://www.youtube.com/watch?v=${video.id}`)
+    let data = ops.get(message.guild.id) || {};
+    if(!data.connection) data.connection = await message.member.voice.channel.join();
+    if (!data.queue) data.queue = [];
+    data.guildID = message.guild.id;
+    data.queue.push({
+    songtitle: video.title,
+    thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
+    requester: message.author.tag,
+    url: `https://www.youtube.com/watch?v=${video.id}`,
+    annoucechannel:  message.channel.id,
+    authorid: message.author.id
+})
+   if(!data.dispatcher)  play(client, ops, data, playlist, video)
+    
+    else {
+     let embed = new Discord.MessageEmbed()
+      .setThumbnail(`https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`)
+      .addField(`Music`, `Playlist [${playlist.title}](${args[0]}) adicionada para a fila. [<@${message.author.id}>] `, false)
+      message.channel.send(embed)
+}
+    ops.set(message.guild.id, data)
+
+	  
+	  
+  }
+  } else {
+  
+    
+   message.channel.send("Coloque um url valido!");
+  }
+
+
+
+
+
+
+} else {
+	let info = await ytdl.getInfo(args[0])
     let data = ops.get(message.guild.id) || {};
     if(!data.connection) data.connection = await message.member.voice.channel.join();
     if (!data.queue) data.queue = []
@@ -85,18 +130,10 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 }
     ops.set(message.guild.id, data)
 }
-
+	
 }
+	
 
-
-
-
-async function handlePlaylist(client, data){
-	
-	
-	
-	
-	
 }
 
 
