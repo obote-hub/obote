@@ -92,8 +92,8 @@ try {
                     }`;
                 return duration;
             }
-        } catch {
-            message.channel.send("**Algo deu errado!**")
+        } catch(err) {
+            message.channel.send(err)
         }
         
 }
