@@ -27,7 +27,7 @@ try {
             const videoEmbed = new Discord.MessageEmbed()
                 .setThumbnail(video.thumbnail)
                 .setColor('GREEN')
-                .setTitle(video.title)
+                .setTitle(video.songtitle)
                 .setDescription(description)
                 .setFooter(message.member.displayName, message.author.displayAvatarURL())
                 .setTimestamp()
