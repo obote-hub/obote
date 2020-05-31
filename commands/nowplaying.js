@@ -17,7 +17,9 @@ try {
             let video = serverQueue.queue[0]
             let conectado = serverQueue.dispatcher.streamTime
             let description;
-            if (video.duration == 'Live Stream') {
+            console.log(conectado)
+            /*
+               if (video.duration == 'Live Stream') {
                 description = 'Ao vivo';
             } else {
                 description = playbackBar(video);
@@ -95,6 +97,7 @@ try {
         } catch(err) {
             message.channel.send(err)
         }
+        */
         
 }
 
