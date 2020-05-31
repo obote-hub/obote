@@ -18,7 +18,7 @@ try {
             let conectado = serverQueue.dispatcher.streamTime
             let description;
             console.log(conectado)
-            /*
+            
                if (video.duration == 'Live Stream') {
                 description = 'Ao vivo';
             } else {
@@ -32,7 +32,7 @@ try {
                 .setFooter(message.member.displayName, message.author.displayAvatarURL())
                 .setTimestamp()
             message.channel.send(videoEmbed);
-            return;
+            
 
             function playbackBar(video) {
                 const passedTimeInMS = conectado
@@ -94,9 +94,9 @@ try {
                     }`;
                 return duration;
             }
-            */
+            
         } catch(err) {
-            message.channel.send(err)
+            console.log(err)
         }
         
         
