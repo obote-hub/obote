@@ -15,8 +15,8 @@ if (!channel) return message.channel.send('Me desculpa mas voce precisa estar em
 	let data = ops.get(message.guild.id)
 	let dispatcher = data.guildID
         ops.delete(dispatcher)
-        await message.react("👋")
-        return message.channel.send('👋 **Disconectado**')
+        message.react("👋")
+        message.channel.send('👋 **Disconectado**')
         
 	      
 }
