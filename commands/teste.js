@@ -59,7 +59,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 
 
-
+}
   }
 }
 
