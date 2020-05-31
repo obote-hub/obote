@@ -64,12 +64,6 @@ module.exports.run = async (client, message, args, ops, afk) => {
  async function play(info, client, ops, data, playlist = false){
 	 if(data.dispatcher){
 		 if (playlist) return undefined;
-		 else{
-       let eeembed = new Discord.MessageEmbed()
-      .setThumbnail(`https://i.ytimg.com/vi/${info.video_id}/maxresdefault.jpg`)
-      .addField(`Music`, `Musica adicionada para a fila [${info.title}](${args[0]}) [<@${message.author.id}>] `, false)
-      message.channel.send(eeembed)
-		 }
 		 return undefined;
 	 }
 	 const ytembed = new Discord.MessageEmbed()
