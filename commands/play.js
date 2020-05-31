@@ -110,7 +110,9 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
 
 } else {
-	let info = await ytdl.getInfo(args[0])
+	
+    let info = await ytdl.getInfo(args[0])
+    var video = await youtube.getVideoByID(info.video_id)
     let data = ops.get(message.guild.id) || {};
     if(!data.connection) data.connection = await message.member.voice.channel.join();
     if (!data.queue) data.queue = []
