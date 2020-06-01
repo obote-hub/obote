@@ -14,7 +14,8 @@ try {
             };
             const serverQueue = ops.get(message.guild.id);
             if (!serverQueue) return message.channel.send('❌ **Nada tocando neste server**');
-            let video = serverQueue.queue[0]
+            let queue = serverQueue.queue
+            let video = queue[0]
             let conectado = serverQueue.dispatcher.streamTime
             let description;
             console.log(conectado)
