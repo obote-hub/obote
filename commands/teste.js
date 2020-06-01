@@ -1,8 +1,7 @@
 
 const Discord = require('discord.js')
 module.exports.run = async (client, message, args, ops, afk) => {
-let emote = '705555136981762130'
-message.react(emote);
+message.react('708885467852177468');
 }
 
 module.exports.config = {
