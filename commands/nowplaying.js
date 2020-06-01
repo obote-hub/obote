@@ -96,6 +96,7 @@ try {
             }
             
         } catch(err) {
+                    message.channel.send(`Algo deu errado, use ${prefix}queue`)
             console.log(err)
         }
         
