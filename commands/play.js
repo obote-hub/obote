@@ -71,6 +71,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
   
 
   for (const video of Object.values(videos)) {
+    const playvideo = await youtube.getVideoByID(video.id)
     let info = await ytdl.getInfo(`https://www.youtube.com/watch?v=${video.id}`)
     let data = ops.get(message.guild.id) || {};
     if(!data.connection) data.connection = await message.member.voice.channel.join();
@@ -83,7 +84,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     url: `https://www.youtube.com/watch?v=${video.id}`,
     annoucechannel:  message.channel.id,
     authorid: message.author.id,
-    duration: video.duration
+    duration: playvideo.duration
 })
    if(!data.dispatcher)  play(client, ops, data, playlist, video)
     
