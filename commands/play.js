@@ -86,7 +86,7 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
     authorid: message.author.id,
     duration: playvideo.duration
 })
-   if(!data.dispatcher)  play(client, ops, data, playlist, video)
+   if(!data.dispatcher)  play(client, ops, data)
     
     else {
      let embed = new Discord.MessageEmbed()
