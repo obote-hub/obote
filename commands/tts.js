@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 
      if (!voiceChannel)return message.channel.send("**Voce precisa entrar em um canal de voz antes!** <:FeelsDonkMan:689656177520672873>");
-     if (bot.voice.connections.has(voiceChannel.guild.id))return message.channel.send("**Ja estou convertendo tts!**  <:FeelsDonkMan:689656177520672873>");
+     if (client.voice.connections.has(voiceChannel.guild.id))return message.channel.send("**Ja estou convertendo tts!**  <:FeelsDonkMan:689656177520672873>");
    const connection = await voiceChannel.join();
    let url = `http://api.streamelements.com/kappa/v2/speech?voice=Brian&text=${text.replace(' ', '%20')}`
    const dispatcher = connection.play(url);
