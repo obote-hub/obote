@@ -8,13 +8,10 @@ if (!channel) return message.channel.send('Me desculpa mas voce precisa estar em
         if (message.guild.me.voice.channel !== message.member.voice.channel) {
             return message.channel.send("**Voce precisa estar no mesmo canal de voz que eu.!**");
           }
-        const serverQueue = ops.get(message.guild.id);
-        if (!serverQueue) return message.channel.send('❌ **Nada tocando nesse server**');
+        const fetched = ops.get(message.guild.id);
+        if (!fetched) return message.channel.send('❌ **Nada tocando nesse server**');
         
-        serverQueue.dispatcher.end()
-	let data = ops.get(message.guild.id)
-	let dispatcher = data.guildID
-        ops.delete(dispatcher)
+      message.guild.me.voice.channel.leave();
         message.react("👋")
         message.channel.send('👋 **Disconectado**')
         
