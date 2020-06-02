@@ -12,7 +12,7 @@ if (!channel) return message.channel.send('Me desculpa mas voce precisa estar em
         if (!fetched) return message.channel.send('❌ **Nada tocando nesse server**');
         
 	
-	fetched.delete(fetched.dispatcher.guildID)
+	ops.delete(fetched.dispatcher.guildID)
       message.guild.me.voice.channel.leave();
         message.react("👋")
         message.channel.send('👋 **Disconectado**')
