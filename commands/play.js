@@ -33,6 +33,15 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
         const collector = message.channel.createMessageCollector(filter)
         collector.videos = videos;
         collector.once('collect', async function(m) {
+		if (m.content.startsWith(prefix)) {
+  return message.channel.send(" ");
+	   }
+ if (m.author.bot) {
+return message.channel.send(" ");
+	}
+if(m.author === client.user) {
+return message.channel.send(" ");
+	}
           let urll = this.videos[parseInt(m.content)-1].url
           let info = await ytdl.getInfo(urll)
 	  var video = await youtube.getVideoByID(info.video_id)
