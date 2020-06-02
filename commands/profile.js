@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const { Canvas } = require("canvas-constructor")
+const Canvas = require("canvas-constructor")
 const fetch = require("node-fetch")
 module.exports.run = async (client, message, args, ops, afk) => {
 const avatar = await fetch(message.author.avatarURL({format: 'jpg'}))
