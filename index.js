@@ -10,6 +10,7 @@ const path = require('path');
 const client = new Discord.Client();
 //Discord maps
 const ops = new Map();
+const tts = new Map();
 const queue = new Map();
 client.mute = new Map();
 client.afk = new Map();
@@ -148,7 +149,7 @@ if(!message.content.startsWith(prefix))return;//If message dont starts with pref
 
 let commandfile = client.commands.get(command) || client.commands.get(client.aliases.get(command))//Get command file for the command when is trigered
 
-if(commandfile)  commandfile.run(client,message,args,ops,afk,db,prefix,mute)//Runs the file if it exist;
+if(commandfile)  commandfile.run(client,message,args,ops,afk,db,prefix,mute,tts)//Runs the file if it exist;
 
 })
 
