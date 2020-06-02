@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-module.exports.run = async (client, message, args, ops, afk) => {
+module.exports.run = async (client, message, args, ops, afk, tts) => {
   if (!args[0])return message.channel.send("**Informe um texto para eu converter em tts.** <:FeelsDonkMan:689656177520672873>");
    let serverqueue = ops.get(message.guild.id)
    
@@ -14,15 +14,62 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 
      if (!voiceChannel)return message.channel.send("**Voce precisa entrar em um canal de voz antes!** <:FeelsDonkMan:689656177520672873>");
-     if (client.voice.connections.has(voiceChannel.guild.id))return message.channel.send("**Ja estou convertendo tts!**  <:FeelsDonkMan:689656177520672873>");
-   const connection = await voiceChannel.join();
-   let url = `http://api.streamelements.com/kappa/v2/speech?voice=Brian&text=${text.replace(' ', '%20')}`
-   const dispatcher = connection.play(url);
-    await message.react("🔉");
- 
+     
+	let data = tts.get(message.guild.id) || {};
+	if(!data.connection) data.connection = await message.member.voice.channel.join();
+	if (!data.queue) data.queue = [];
+	data.guildID = message.guild.id;
+	data.queue.push({
+     ttsmessage: text,
+     url: `http://api.streamelements.com/kappa/v2/speech?voice=Brian&text=${text.replace(' ', '%20')}`,
+     requester: message.author.tag,
+     annoucechannel:  message.channel.id,
+     authorid: message.author.id,
+})
+	if(!data.dispatcher)  play(client, tts, data)
+	else {
+     let searchembed = new Discord.MessageEmbed()
+      .addField(`TTS 🔉`, `Tts adicionado para a fila [<@${message.author.id}>] `, false)
+      message.channel.send(searchembed)
 }
+    tts.set(message.guild.id, data)
 
+}
 module.exports.config = {
 	name:  "tts",
 	aliases: []
+}
+
+
+
+ async function play(client, tts, data){
+	 let fetchedtts = tts.get(data.guildID)
+	 if(fetchedtts.queue.length > 30){
+          return client.channels.cache.get(data.queue[0].annoucechannel).send("**Muitas mensagens de tts para processar, espere algumas acabar para usar o comando denovo** <:FeelsDonkMan:689656177520672873>")
+            }
+	 const ytembed = new Discord.MessageEmbed()
+	 .addField(`TTS 🔉`, `Tocando tts escrito por: [<@${data.queue[0].authorid}>]`, false)
+      client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
+      data.dispatcher = await data.connection.play(data.queue[0].url, { quality: "highestaudio" })
+      data.dispatcher.guildID = data.guildID;
+      
+      data.dispatcher.once('finish', function(){
+        finish(client, tts, this)
+})
+    }
+
+      function finish(client, tts, dispatcher){
+        let fetched = tts.get(dispatcher.guildID)
+        fetched.queue.shift();
+        
+        if(fetched.queue.length > 0){
+          tts.set(dispatcher.guildID, fetched)
+          play(client, tts, fetched)
+            } else {
+               tts.delete(dispatcher.guildID)
+              
+              let vc = client.guilds.cache.get(dispatcher.guildID).me.voice.channel;
+              if(vc) vc.leave()
+            }
+	      
 }
