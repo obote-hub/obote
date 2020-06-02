@@ -44,9 +44,6 @@ module.exports.config = {
 
  async function play(client, tts, data){
 	 let fetchedtts = tts.get(data.guildID)
-	 if(fetchedtts.queue.length > 30){
-          return client.channels.cache.get(data.queue[0].annoucechannel).send("**Muitas mensagens de tts para processar, espere algumas acabar para usar o comando denovo** <:FeelsDonkMan:689656177520672873>")
-            }
 	 const ytembed = new Discord.MessageEmbed()
 	 .addField(`TTS 🔉`, `Tocando tts escrito por: [<@${data.queue[0].authorid}>]`, false)
       client.channels.cache.get(data.queue[0].annoucechannel).send(ytembed)
