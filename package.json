@@ -18,6 +18,7 @@
   "homepage": "https://github.com/udarkness/discord-obote#readme",
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
+    "amethyste-api": "^1.1.4",
     "canvas-constructor": "^3.2.0",
     "cpu-stat": "^2.0.1",
     "dateformat": "^3.0.3",
