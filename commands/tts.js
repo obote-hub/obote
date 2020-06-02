@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-module.exports.run = async (client, message, args, ops, afk, tts) => {
+module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, tts) => {
   if (!args[0])return message.channel.send("**Informe um texto para eu converter em tts.** <:FeelsDonkMan:689656177520672873>");
    let serverqueue = ops.get(message.guild.id)
    
