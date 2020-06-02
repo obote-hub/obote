@@ -19,8 +19,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
    let url = `http://api.streamelements.com/kappa/v2/speech?voice=Brian&text=${text.replace(' ', '%20')}`
    const dispatcher = connection.play(url);
     await message.react("🔉");
-    dispatcher.once("finish", () => voiceChannel.leave());
-    dispatcher.once("error", () => voiceChannel.leave());
+ 
 }
 
 module.exports.config = {
