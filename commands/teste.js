@@ -1,10 +1,9 @@
-const spotify = require("spotify-url-info");
 const Discord = require('discord.js')
 module.exports.run = async (client, message, args, ops, afk) => {
+   const spotify = require("spotify-url-info");
 
-
-	let track = await getData(args[0]);
-	console.log(track)
+   let track = await spotify.getData(args[0]);
+   console.log(track)
 	
 }
 
