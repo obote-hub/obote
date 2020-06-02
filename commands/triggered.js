@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const AmeClient = require('amethyste-api');
-const AmeAPI = new AmeClient(AME_KEY);
+const AmeAPI = new AmeClient(process.env.AME_KEY);
 module.exports.run = async (client, message, args, ops, afk) => {
 
 let user = await message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(r => r.user.username.toLowerCase() === args.join(' ').toLocaleLowerCase()) || message.guild.members.cache.find(r => r.displayName.toLowerCase() === args.join(' ').toLocaleLowerCase()) || message.member;
