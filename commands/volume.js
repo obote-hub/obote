@@ -13,7 +13,7 @@ if(isNaN(args[0]) || args[0] > 200 || args[0] <  0) return message.channel.send(
 
 fetched.dispatcher.setVolume(args[0]/100)
 
-message.channel.send(`**Volume setado para:** \`${args[0]}\` <:FeelsDonkMan:689656177520672873>`)
+message.channel.send(`**Volume setado para:** \`${args[0]}\`. <:FeelsDonkMan:689656177520672873>`)
 
 
 
