@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const ytdl = require("ytdl-core");
 const YouTube = require("simple-youtube-api");
 const youtube = new YouTube(process.env.GOOGLE_API_KEY);
-module.exports.run = async (client, message, args, ops, afk, prefix, tts) => {
+module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, tts) => {
 
 
   if (!message.member.voice.channel) return message.channel.send("**Você precisa estar em um canal de voz antes.** <:FeelsDonkMan:689656177520672873>");
