@@ -2,11 +2,14 @@ const Discord = require('discord.js')
 const ytdl = require("ytdl-core");
 const YouTube = require("simple-youtube-api");
 const youtube = new YouTube(process.env.GOOGLE_API_KEY);
-module.exports.run = async (client, message, args, ops, afk, prefix) => {
+module.exports.run = async (client, message, args, ops, afk, prefix, tts) => {
 
 
-  if (!message.member.voice.channel) return message.channel.send("Você precisa estar em um canal de voz antes.");
-
+  if (!message.member.voice.channel) return message.channel.send("**Você precisa estar em um canal de voz antes.** <:FeelsDonkMan:689656177520672873>");
+   let ttson = tts.get(message.guild.id);
+	if(ttson){
+		return message.channel.send('**Você nao pode tocar uma musica enquanto tem um tts tocando** <:FeelsDonkMan:689656177520672873>')
+	}
     if (!args[0]) return message.channel.send("Coloque um url valido!");
   
     let validate = await ytdl.validateURL(args[0]);
