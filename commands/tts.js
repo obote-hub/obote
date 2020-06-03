@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	if(args[0].includes(':')){
 		let language = args[0].replace(':', '')
 		
-		var linguas = ["Eiko", "eiko", "Ricardo", "ricardo"];
+		var linguas = ["Mizuki", "Ricardo"];
 		
 		if(!linguas.includes(language)){
 			return message.channel.send(`**As únicas vozes disponiveis por enquanto são: Ricardo, Eiko e Brian.** <:FeelsDonkMan:689656177520672873>`)
@@ -26,7 +26,8 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
    
    let text = args.join(" ");
 	let truetext = text;
-	truetext.replace('${defaultlang}:', '')
+	truetext.replace(`${defaultlang}:`, '')
+	console.log(truetext)
    
     if (text.length > 600)return message.channel.send("**Por favor mande um texto menor, isso é muito pra mim!** <:FeelsDonkMan:689656177520672873>");
 
