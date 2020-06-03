@@ -1,6 +1,18 @@
 const Discord = require('discord.js')
 module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, tts) => {
+	
   if (!args[0])return message.channel.send("**Informe um texto para eu converter em tts.** <:FeelsDonkMan:689656177520672873>");
+	let defaultlang;
+	
+	if(args[0].includes(':')){
+		let language = args[0].replace(':')
+		
+		defaultlang = language
+	} else {
+		defaultlang = 'Brian'
+	}
+		console.log(defaultlang)
+	
    let serverqueue = ops.get(message.guild.id)
    
    if(serverqueue)return message.channel.send("**Não posso converter textos para tts enquanto tem uma musica tocando.** <:FeelsDonkMan:689656177520672873>")
