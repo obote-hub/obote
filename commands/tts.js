@@ -7,8 +7,10 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	if(args[0].includes(':')){
 		let language = args[0].replace(':', '')
 		
-		if(language !== 'Ricardo'){
-			return message.channel.send(`**As únicas vozes disponiveis por enquanto são: Ricardo e Brian.** <:FeelsDonkMan:689656177520672873>`)
+		var linguas = ["Eiko", "eiko", "Ricardo", "ricardo"];
+		
+		if(!linguas.includes(language)){
+			return message.channel.send(`**As únicas vozes disponiveis por enquanto são: Ricardo, Eiko e Brian.** <:FeelsDonkMan:689656177520672873>`)
 		}
 		
 		defaultlang = language
@@ -23,8 +25,10 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
    
    
    let text = args.join(" ");
+	let truetext = text;
+	truetext.replace('${defaultlang}:', '')
    
-    if (text.length > 1024)return message.channel.send("**Por favor mande um texto menor, isso é muito pra mim!** <:FeelsDonkMan:689656177520672873>");
+    if (text.length > 600)return message.channel.send("**Por favor mande um texto menor, isso é muito pra mim!** <:FeelsDonkMan:689656177520672873>");
 
     const voiceChannel = message.member.voice.channel; 
 
@@ -36,8 +40,8 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	if (!data.queue) data.queue = [];
 	data.guildID = message.guild.id;
 	data.queue.push({
-     ttsmessage: text,
-     url: `http://api.streamelements.com/kappa/v2/speech?voice=${defaultlang}&text=${text.replace(' ', '%20')}`,
+     ttsmessage: truetext,
+     url: `http://api.streamelements.com/kappa/v2/speech?voice=${defaultlang}&text=${truetext.replace(' ', '%20')}`,
      requester: message.author.tag,
      annoucechannel:  message.channel.id,
      authorid: message.author.id,
