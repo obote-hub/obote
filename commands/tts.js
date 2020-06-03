@@ -7,6 +7,10 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	if(args[0].includes(':')){
 		let language = args[0].replace(':', '')
 		
+		if(language !== 'ricardo' || language !== 'Ricardo' || language !== 'eiko' || language !== 'Eiko'){
+			return message.channel.send(`**As únicas vozes disponiveis por enquanto são: Ricardo, Eiko e Brian.** <:FeelsDonkMan:689656177520672873>`)
+		}
+		
 		defaultlang = language
 	} else {
 		defaultlang = 'Brian'
@@ -33,7 +37,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	data.guildID = message.guild.id;
 	data.queue.push({
      ttsmessage: text,
-     url: `http://api.streamelements.com/kappa/v2/speech?voice=Brian&text=${text.replace(' ', '%20')}`,
+     url: `http://api.streamelements.com/kappa/v2/speech?voice=${defaultlang}&text=${text.replace(' ', '%20')}`,
      requester: message.author.tag,
      annoucechannel:  message.channel.id,
      authorid: message.author.id,
