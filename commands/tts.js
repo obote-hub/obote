@@ -7,8 +7,8 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	if(args[0].includes(':')){
 		let language = args[0].replace(':', '')
 		
-		if(language !== 'ricardo' || language !== 'Ricardo' || language !== 'eiko' || language !== 'Eiko'){
-			return message.channel.send(`**As únicas vozes disponiveis por enquanto são: Ricardo, Eiko e Brian.** <:FeelsDonkMan:689656177520672873>`)
+		if(language !== 'Ricardo'){
+			return message.channel.send(`**As únicas vozes disponiveis por enquanto são: Ricardo e Brian.** <:FeelsDonkMan:689656177520672873>`)
 		}
 		
 		defaultlang = language
