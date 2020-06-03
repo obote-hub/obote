@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
    
    let text = args.join(" ");
 	let truetext = text;
-	truetext.replace(`${defaultlang}:`, '')
+	truetext = truetext.replace(`${defaultlang}:`, '')
 	console.log(truetext)
    
     if (text.length > 600)return message.channel.send("**Por favor mande um texto menor, isso é muito pra mim!** <:FeelsDonkMan:689656177520672873>");
