@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	let defaultlang;
 	
 	if(args[0].includes(':')){
-		let language = args[0].replace(':')
+		let language = args[0].replace(':', '')
 		
 		defaultlang = language
 	} else {
