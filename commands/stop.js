@@ -25,5 +25,6 @@ if (!channel) return message.channel.send('Me desculpa mas voce precisa estar em
 
 module.exports.config = {
 	name:  "stop",
-	aliases: ["parar"]
+	aliases: ["parar"],
+	description: `Me força a parar de tocar musica <:peepoSad:715687933348282418>`
 }
