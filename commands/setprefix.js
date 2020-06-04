@@ -15,5 +15,6 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
 
 module.exports.config = {
 	name:  "setprefix",
-	aliases: ["prefix", 'sprefix', 'prefixo', 'setarprefixo', 'prefixset']
+	aliases: ["prefix", 'sprefix', 'prefixo', 'setarprefixo', 'prefixset'],
+	description: `Muda meu prefixo nesse server `
 }
