@@ -60,6 +60,7 @@ module.exports.run = async (client, message, args, ops, afk, db) => {
 
 module.exports.config = {
 	name:  "serverinfo",
-	aliases: ["servinfo", 'sinfo', 'seinfo', 'serverstats', 'sstats']
+	aliases: ["servinfo", 'sinfo', 'seinfo', 'serverstats', 'sstats'],
+	description: `Informações sobre o server, nome, membros, canais, região (ETC...)`
 }
 
