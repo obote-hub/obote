@@ -21,5 +21,6 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 module.exports.config = {
 	name:  "afk",
-	aliases: []
+	aliases: [],
+	description: "Seta voce como afk, use quando nao estiver perto do computador, suporta uma mensagem de afk personalizada"
 }
