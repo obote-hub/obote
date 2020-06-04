@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	message.channel.send(embed)
 	} else {
 		let command = client.commands.get(client.aliases.get(args[0].toLowerCase()) || args[0].toLowerCase());
-                if(!command) return message.channel.send(`**Não encontrei o comando ${args[0]}**`)
+                if(!command) return message.channel.send(`**Não encontrei o comando ${args[0]}**   <:peepoShrug:692362555607482388>`)
 		 command = command.config;
                 const commandembed = new Discord.MessageEmbed()
                 .setThumbnail(client.user.displayAvatarURL)
