@@ -192,5 +192,6 @@ return message.channel.send(" ");
 
 module.exports.config = {
 	name:  "play",
-	aliases: ["tocar", "p"]
+	aliases: ["tocar", "p"],
+	description: `Comando para ouvir musicas, suporta playlists e videos do youtube`
 }
