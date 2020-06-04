@@ -13,5 +13,6 @@ let user = await message.mentions.members.first() || message.guild.members.cache
 
 module.exports.config = {
 	name:  "triggered",
-	aliases: ["tiltado", "putasso"]
+	aliases: ["tiltado", "putasso"],
+	description: `Edita a foto de alguem com um gif putasso <:peepoMad:713474018165915649>`
 }
