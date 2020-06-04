@@ -23,6 +23,7 @@ module.exports.run = async (client, message, args, ops, afk, db, mute) => {
 
 module.exports.config = {
 	name:  "unmute",
-	aliases: ["desmutar"]
+	aliases: ["desmutar"],
+	description: `Desmuta um usuario`
 }
 
