@@ -42,6 +42,7 @@ module.exports.run = async (client, message, args, ops, afk, db, mute) => {
 
 module.exports.config = {
 	name:  "mute",
-	aliases: ["mutar"]
+	aliases: ["mutar"],
+	description: `Muta algum usuario do server`
 }
 
