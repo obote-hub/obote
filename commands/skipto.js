@@ -42,5 +42,6 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
 module.exports.config = {
 	name:  "skipto",
-	aliases: ["pularpara", "jumpto"]
+	aliases: ["pularpara", "jumpto"],
+	description: `Pula para a musica informada pelo numero`
 }
