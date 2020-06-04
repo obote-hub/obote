@@ -52,5 +52,6 @@ module.exports.run = (client, message, args, ops, afk) =>{
 }
 module.exports.config = {
 	name:  "corona",
-	aliases: ['covid', 'covid19']
+	aliases: ['covid', 'covid19'],
+	description: "Status atuais do virus covid-19 em paises"
 }
