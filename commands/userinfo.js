@@ -67,6 +67,7 @@ let user = message.mentions.users.first() || message.author; // You can do it by
 
 module.exports.config = {
 	name:  "userinfo",
-	aliases: ["infouser", "uinfo"]
+	aliases: ["infouser", "uinfo"],
+	description: `Detalha informações de um usuario: username, avatar, status (ETC.)`
 }
 
