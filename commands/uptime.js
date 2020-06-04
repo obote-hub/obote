@@ -12,5 +12,6 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 module.exports.config = {
 	name:  "uptime",
-	aliases: ["botuptime", "up"]
+	aliases: ["botuptime", "up"],
+	description: `Informa quantas horas eu estou acordado <:ResidentSleeper:715976042065428631>`
 }
