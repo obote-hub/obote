@@ -16,5 +16,6 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
 module.exports.config = {
 	name:  "help",
 	aliases: ["ajuda", "comandos"],
+	description: "Informa todos os comandos disponiveis e suas funções"
 }
 
