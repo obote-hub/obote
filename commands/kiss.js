@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args, ops, afk) => {
    .setDescription(`**<@${message.author.id}> beijou ${message.mentions.members.first()} !** 😳`)
    .setImage(kisses[fact])
    .setTimestamp()
-   .setFooter(`Reaja com para retribuir`)
+   .setFooter(`Reaja com 🔁 para retribuir`)
    .setAuthor(message.author.tag, avatar)
    message.channel.send(embed).then(async function (message) {
 	await message.react('🔁')
@@ -43,5 +43,6 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 module.exports.config = {
 	name:  "kiss",
-	aliases: ['ks', 'beijar', 'beijo']
+	aliases: ['ks', 'beijar', 'beijo'],
+	description: `Beija algum usuario, reaja com \`🔁\` para beijar de volta`
 }
