@@ -20,5 +20,6 @@ module.exports.run = async (client, message, args, ops, afk, prefix) => {
 
 module.exports.config = {
 	name:  "skip",
-	aliases: ["pular"]
+	aliases: ["pular"],
+	description: `Pula a musica atual`
 }
