@@ -36,7 +36,8 @@ cpuStat.usagePercent(function (error, percent, seconds) {
 }
 module.exports.config = {
 	name:  "status",
-	aliases: ['stats']
+	aliases: ['stats'],
+	description: `Insformações sobre meus status: uptime, servers, users, cpu (ETC..)`
 }
 
 function formatBytes (a, b) {
