@@ -6,19 +6,19 @@ module.exports.run = async (client, message, args, ops, afk, db) => {
   let icon = message.guild.iconURL({size: 2048}); // Server Avatar
     
     let region = {
-      "brazil": "Brazil",
-      "eu-central": "Central Europe",
-      "singapore": "Singapore",
-      "london": "London",
+      "brazil": "Brasil",
+      "eu-central": "Europa Central",
+      "singapore": "Singapura",
+      "london": "Londres",
       "russia": "Russia",
-      "japan": "Japan",
+      "japan": "Japão",
       "hongkong": "Hongkong",
       "sydney": "Sydney",
-      "us-central": "U.S. Central",
-      "us-east": "U.S. East",
-      "us-south": "U.S. South",
-      "us-west": "U.S. West",
-      "eu-west": "Western Europe"
+      "us-central": "Estados Unidos",
+      "us-east": "Estados Unidos",
+      "us-south": "Estados Unidos",
+      "us-west": "Estados Unidos",
+      "eu-west": "Europa"
     }
 
     let member = message.guild.members;
