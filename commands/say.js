@@ -9,5 +9,6 @@ module.exports.run = async (client, message, args, ops, afk) => {
 
 module.exports.config = {
 	name:  "say",
-	aliases: ["falar"]
+	aliases: ["falar"],
+	description: `Me faz falar alguma coisa, qualquer coisa.... qualquer uma.... menos aquilo... <:cmonBruh:717903591930855503>`
 }
