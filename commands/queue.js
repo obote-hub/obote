@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
  	let queue = fetched.queue;
     let nowplay = queue[0];
 
-    let resp = `\`\`\`nimrod\n ⬐ tocando agora\n1) ${nowplay.songtitle}\n⬑ tocando agora\n\n`
+    let resp = `\`\`\`nimrod\n⬐ tocando agora\n1) ${nowplay.songtitle}\n⬑ tocando agora\n\n`
 
     for(var i = 1; i < queue.length; i++){
     	resp += `${i+1}) ${queue[i].songtitle}\n`;
@@ -21,5 +21,6 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
 
 module.exports.config = {
 	name:  "queue",
-	aliases: ["songlist", "songs", "musicas", "musiclist", "queuesongs"]
+	aliases: ["songlist", "songs", "musicas", "musiclist", "queuesongs"],
+	description: `Mostra a lista de musicas do servidor`
 }
