@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
                 .setTitle(`${prefix}${command.name}`)
 		.addField(`Nome`, `${command.name}`)
                 .addField(`Descrição`, `${command.description}`)
-		.addField(`Apelidos`, `${command.aliases}`)
+		.addField(`Apelidos`, `${command.aliases ? command.aliases.join(" ") : "Nenhum"}`)
                 .setFooter(`${message.guild.me.displayName} | Total commands: ${client.commands.size}`)
                message.channel.send(commandembed)
 	}
