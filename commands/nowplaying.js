@@ -107,5 +107,6 @@ try {
 
 module.exports.config = {
   name:  "nowplaying",
-  aliases: ["np", "tocandoagora", "playingnow"]
+  aliases: ["np", "tocandoagora", "playingnow"],
+  description: `Informaçoes da musica que esta tocando agora no server`
 }
