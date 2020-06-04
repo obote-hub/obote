@@ -21,5 +21,6 @@ message.channel.send(`**Volume setado para:** \`${args[0]}\`. <:FeelsDonkMan:689
 
 module.exports.config = {
 	name:  "volume",
-	aliases: ["vol"]
+	aliases: ["vol"],
+	description: `Muda o volume da musica que estou tocando.`
 }
