@@ -1,6 +1,7 @@
+const fetch = require('node-fetch')
+const Discord = require('discord.js')
 module.exports.run = (client, message, args, ops, afk) =>{
-	const fetch = require('node-fetch')
-	const Discord = require('discord.js')
+	
 	if(!args[0]){
        fetch('https://corona.lmao.ninja/v2/all')
        .then(response => response.json())
@@ -18,14 +19,6 @@ module.exports.run = (client, message, args, ops, afk) =>{
       message.channel.send(corona)
 
     })
-
-
-
-
-
-
-
-
 	} else {
 		let countries = args[0] // Your/someone countries prefix.
     fetch(`https://corona.lmao.ninja/v2/countries/${countries}`)
