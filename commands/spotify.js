@@ -42,5 +42,6 @@ let user;
 
 module.exports.config = {
 	name:  "spotify",
-	aliases: ['spotifytrack', 'trackspotify']
+	aliases: ['spotifytrack', 'trackspotify'],
+	description: `Informações sobre a musica que algum usuario esta ouvindo`
 }
