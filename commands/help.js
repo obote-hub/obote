@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const ms = require("pretty-ms");
-module.exports.run = async (client, message, args, ops, afk, db, prefix) => {
+module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, tts) => {
 	let commands = client.commands.map(c => `\`${c.config.name}\``).join(', ')
         if(!args[0]){
         const embed = new Discord.MessageEmbed()
