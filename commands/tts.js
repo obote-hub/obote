@@ -58,7 +58,8 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 }
 module.exports.config = {
 	name:  "tts",
-	aliases: []
+	aliases: [],
+	description: `Toca sons de tts, suporta vozes personalizidas 🔉`
 }
 
 
