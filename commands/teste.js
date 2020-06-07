@@ -3,7 +3,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
    db.collection('Channels').doc('Channels').set({
      "Channels": ["namaca", "ghiletofar"]	   
    })
-   db.collection('Guild').doc(message.guild.id).get().then((q) => {
+   db.collection('Channels').doc('Channels').get().then((q) => {
 	   
 	   console.log(q.data().Channels)
    })
