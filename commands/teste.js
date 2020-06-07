@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
    let admin = require('firebase-admin');
   
  let arrUnion = channels.update({
-  Channels: admin.firestore.FieldValue.arrayUnion('greater_virginia')
+  Channels: admin.firestore.FieldValue.arrayUnion('inilsen')
 });
 	
 }
