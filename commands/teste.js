@@ -3,7 +3,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
    var channels = db.collection("Channels").doc("Channels");
    
    channels.update({
-    "Channels": db.FieldValue.arrayUnion("namaca")
+    "Channels": db.FieldValue.Channels("namaca")
 });
  
 	
