@@ -1,5 +1,4 @@
 //Npm & packages
-require('./database.js')
 const firebase = require('firebase')
 const FieldValue = require('firebase-admin').firestore.FieldValue;
 const admin = require('firebase-admin')
@@ -46,7 +45,15 @@ admin.initializeApp({
 })
 })
 const db = admin.firestore();
-
+const pg = require('pg')
+const heroku = new pg.Client({
+  user: "bdnohmjkaxgeia",
+  host: "ec2-18-232-143-90.compute-1.amazonaws.com",
+  database: "dcc8frntoebsto",
+  password: "d9e4d95612bddfdf01fc2c27e1848137840b22771f08cf3bb2f4cacb2cb9d4a9",
+  port: 5432
+})
+ heroku.connect()
 
 client.on('ready', () => {
   console.log(`Loguei como ${client.user.tag}!, em ${client.guilds.cache.size} servers;
