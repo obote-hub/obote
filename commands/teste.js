@@ -1,5 +1,4 @@
 const Discord = require('discord.js')
-const fb = require('../database.js').db
 module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, tts) => {
 	/*
    var channels = db.collection("Channels").doc("Channels");
