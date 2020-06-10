@@ -7,4 +7,4 @@ const db = new pg.Client({
 })
 
 
-modules.exports = client
+modules.exports = db
