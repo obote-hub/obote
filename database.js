@@ -8,4 +8,4 @@ const db = new pg.Client({
 })
 
 
-modules.exports = db
+module.exports = db
