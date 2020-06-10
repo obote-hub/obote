@@ -1,8 +1,10 @@
 const pg = require('pg')
-const db = new pg.Client()
+const db = new pg.Client({
+  user: "namaca",
+  host: "localhost",
+  database: "Obote Database",
+  password: "a29u2089#QWpos239@OApisPWMQasd"
+})
 
-db.connect()
 
-const res = db.query('SELECT $1::text as message', ['Hello world!'])
-console.log(res.rows[0].message) // Hello world!
-db.end()
+modules.exports = client
