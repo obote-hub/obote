@@ -54,7 +54,7 @@ const heroku = new pg.Client({
   port: 5432
 })
  heroku.connect()
-
+console.log('Database conectada PogChamp')
 client.on('ready', () => {
   console.log(`Loguei como ${client.user.tag}!, em ${client.guilds.cache.size} servers;
      Comandos carregados: `);
@@ -91,6 +91,9 @@ fs.readdir("./commands/", (err, files)  => { //Check commands folder the get the
 
 
 client.on('ready', () => {
+  const query = heroku.query(
+  'CREATE TABLE items(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
+  console.log(query)
   const activities_list = [
    "BRUHBRUH",
    "+help",
