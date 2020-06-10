@@ -15,15 +15,7 @@ module.exports.run = async (client, message, args, ops, afk, db, prefix, mute, t
 	*/
 	
 	
-	await fb.connect()
-        
 	
-	await fb.query(`CREATE TABLE evento(
-          ID serial PRIMARY KEY,
-          nome VARCHAR (50) UNIQUE NOT NULL
-      )`)
-	
-	await fb.end()
 }
 
 module.exports.config = {
