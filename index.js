@@ -54,7 +54,7 @@ const heroku = new pg.Client({
   port: 5432
 })
  heroku.connect()
-heruku.query(`CREATE TABLE Persons (
+heroku.query(`CREATE TABLE Persons (
     PersonID int,
     LastName varchar(255),
     FirstName varchar(255),
