@@ -46,13 +46,6 @@ admin.initializeApp({
 })
 const db = admin.firestore();
 
-var mongoose = require ("mongoose");
-
-mongoose.connect('mongodb://localhost/obote', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
 console.log('Database conectada PogChamp')
 client.on('ready', () => {
   console.log(`Loguei como ${client.user.tag}!, em ${client.guilds.cache.size} servers;
