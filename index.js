@@ -47,9 +47,9 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const { Client } = require('pg')
-const client = new Client()
+const pg = new Client()
 
-client.connect()
+pg.connect()
 console.log('Database conectada PogChamp')
 client.on('ready', () => {
   console.log(`Loguei como ${client.user.tag}!, em ${client.guilds.cache.size} servers;
