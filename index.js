@@ -56,7 +56,7 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query('CREATE TABLE Persons (PersonID int,LastName varchar(255),FirstName varchar(255),Address varchar(255),City varchar(255));', (err,res) => {
+pg.query('SELECT * FROM persons', (err,res) => {
   
   console.log(err,res)
  
