@@ -56,7 +56,12 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query(`INSERT INTO Persons (FirstName,LastName)VALUES ('Cauã','Honorato');`, (err,res) => {
+pg.query(`CREATE TABLE Users (
+    ID int IDENTITY(1,1) PRIMARY KEY,
+    USERNAME varchar(255) NOT NULL,
+    NICKNAME varchar(255),
+    AGE int
+)`, (err,res) => {
   
   console.log(err,res)
  
