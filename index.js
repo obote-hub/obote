@@ -56,7 +56,7 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query(`INSERT INTO Persons (FirstName,LastName)VALUES ('Lars','Monsen');`, (err,res) => {
+pg.query(`INSERT INTO Persons (FirstName,LastName)VALUES ('Cauã','Honorato');`, (err,res) => {
   
   console.log(err,res)
  
