@@ -47,8 +47,14 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const { Client } = require('pg')
-const pg = new Client()
+const pg = new Client();
 
+
+pg.query('CREATE TABLE Persons (Personid int NOT NULL AUTO_INCREMENT,LastName varchar(255) NOT NULL,FirstName varchar(255),Age int,PRIMARY KEY (Personid));', (err,res) => {
+  
+  console.log(err,res)
+ 
+})
 pg.connect()
 console.log('Database conectada PogChamp')
 client.on('ready', () => {
@@ -87,9 +93,8 @@ fs.readdir("./commands/", (err, files)  => { //Check commands folder the get the
 
 
 client.on('ready', () => {
-  const query = heroku.query(
-  'CREATE TABLE items(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
-  console.log(query)
+ 
+  
   const activities_list = [
    "BRUHBRUH",
    "+help",
