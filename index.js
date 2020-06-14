@@ -56,12 +56,12 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query(`CREATE TABLE Users (
-    ID int IDENTITY(1,1) PRIMARY KEY,
-    USERNAME varchar(255) NOT NULL,
-    NICKNAME varchar(255),
-    AGE int
-)`, (err,res) => {
+pg.query(`CREATE TABLE teste (
+    Personid AUTOINCREMENT PRIMARY KEY,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int
+);`, (err,res) => {
   
   console.log(err,res)
  
