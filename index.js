@@ -59,7 +59,7 @@ pg.connect()
 pg.query(`CREATE TABLE fruits(
    Id SERIAL PRIMARY KEY,
    Username VARCHAR NOT NULL,
-   Money int
+   Money int NOT NULL
 )`, (err,res) => {
   
   console.log(err,res)
