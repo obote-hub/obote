@@ -56,17 +56,8 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query(`INSERT INTO Contatos (name, phones)
-VALUES
-	(
-		'John Doe',
-		ARRAY [ '(408)-589-5846',
-		'(408)-589-5555' ]
-	);`, (err,res) => {
-  
-  console.log(err,res)
- 
-})
+const channels = pg.query(`SELECT Phones from contatos`)
+console.log(channels)
 
 console.log('Database conectada PogChamp')
 client.on('ready', () => {
