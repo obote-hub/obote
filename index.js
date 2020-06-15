@@ -56,15 +56,6 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query(`CREATE TABLE Contatos (
-	id serial PRIMARY KEY,
-	name VARCHAR (100),
-	phones TEXT []
-);`, (err,res) => {
-  
-  console.log(err,res)
- 
-})
 pg.query(`INSERT INTO Contatos (name, phones)
 VALUES
 	(
