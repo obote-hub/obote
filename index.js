@@ -57,7 +57,7 @@ const pg = new Client({
 
 pg.connect()
 const channels = pg.query(`SELECT Phones from contatos`)
-console.log(channels)
+console.log(channels.rows[0])
 
 console.log('Database conectada PogChamp')
 client.on('ready', () => {
