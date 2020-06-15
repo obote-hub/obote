@@ -56,26 +56,22 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query(`INSERT INTO fruits(Username,money) 
-VALUES('Orange', 34)`, (err,res) => {
+pg.query(`CREATE TABLE Contatos (
+	id serial PRIMARY KEY,
+	name VARCHAR (100),
+	phones TEXT []
+);`, (err,res) => {
   
   console.log(err,res)
  
 })
-pg.query(`INSERT INTO fruits(Username,money) 
-VALUES('Apple', 23)`, (err,res) => {
-  
-  console.log(err,res)
- 
-})
-pg.query(`INSERT INTO fruits(Username,money) 
-VALUES('Strawberry', 54)`, (err,res) => {
-  
-  console.log(err,res)
- 
-})
-pg.query(`INSERT INTO fruits(Username,money) 
-VALUES('Banana', 12)`, (err,res) => {
+pg.query(`INSERT INTO contacts (name, phones)
+VALUES
+	(
+		'John Doe',
+		ARRAY [ '(408)-589-5846',
+		'(408)-589-5555' ]
+	);`, (err,res) => {
   
   console.log(err,res)
  
