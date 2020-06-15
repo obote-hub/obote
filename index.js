@@ -56,11 +56,26 @@ const pg = new Client({
 });
 
 pg.connect()
-pg.query(`CREATE TABLE fruits(
-   Id SERIAL PRIMARY KEY,
-   Username VARCHAR NOT NULL,
-   Money int NOT NULL
-)`, (err,res) => {
+pg.query(`INSERT INTO fruits(Username,money) 
+VALUES('Orange', 34)`, (err,res) => {
+  
+  console.log(err,res)
+ 
+})
+pg.query(`INSERT INTO fruits(Username,money) 
+VALUES('Apple', 23)`, (err,res) => {
+  
+  console.log(err,res)
+ 
+})
+pg.query(`INSERT INTO fruits(Username,money) 
+VALUES('Strawberry', 54)`, (err,res) => {
+  
+  console.log(err,res)
+ 
+})
+pg.query(`INSERT INTO fruits(Username,money) 
+VALUES('Banana', 12)`, (err,res) => {
   
   console.log(err,res)
  
