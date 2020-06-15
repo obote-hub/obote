@@ -65,7 +65,7 @@ pg.query(`CREATE TABLE Contatos (
   console.log(err,res)
  
 })
-pg.query(`INSERT INTO contacts (name, phones)
+pg.query(`INSERT INTO Contatos (name, phones)
 VALUES
 	(
 		'John Doe',
