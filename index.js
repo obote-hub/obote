@@ -58,7 +58,7 @@ const pg = new Client({
 pg.connect()
 
 pg.query("SELECT phones from contatos", (err, res) => {
-  const channels = res.rows.phones
+  const channels = res.rows[0]
   console.log(channels)
 });
 
