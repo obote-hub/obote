@@ -46,24 +46,6 @@ admin.initializeApp({
 })
 const db = admin.firestore();
 
-const { Client } = require('pg')
-const pg = new Client({
-  user: 'sofmwqdoablknl',
-  host: 'ec2-34-202-88-122.compute-1.amazonaws.com',
-  database: 'dci82n388n6l2v',
-  port: '5432',
-  password: '4f039885cf61c56b1a43d6193c6ff6735fb7bebc563163dfcdb0ec4535d29e9d'
-});
-let channels;
-pg.connect()
-
-pg.query("SELECT phones from contatos", (err, res) => {
-  channels = res.rows[0].phones
- 
-});
-console.log(channels)
-
-console.log('Database conectada PogChamp')
 client.on('ready', () => {
   console.log(`Loguei como ${client.user.tag}!, em ${client.guilds.cache.size} servers;
      Comandos carregados: `);
